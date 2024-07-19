@@ -1,0 +1,190 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  AFFILIATE
+  COMPANY
+}
+
+enum OfferType {
+  PRODUCT
+  SERVICE
+}
+
+enum PlanType {
+  MONTHLY
+  QUATERLY
+  SEMI_ANNUAL
+}
+
+model User {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+  password  String
+  role      UserRole @default(USER)
+  admin     Admin?
+  company   Company?
+}
+
+model Company {
+  id                  String               @id @default(uuid())
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String               @unique
+  companyName         String               @unique
+  tel                 String               @unique
+  email               String               @unique
+  CompanySale         CompanySale[]
+  CompanyExpense      CompanyExpense[]
+  CompanyClient       CompanyClient[]
+  CompanySchedule     CompanySchedule[]
+  CompanyReminder     CompanyReminder[]
+  CompanyProcedure    CompanyOffer[]
+  CompanyEmployee     CompanyEmployee[]
+  CompanyClientRecord CompanyClientRecord?
+  Payment             Payment[]
+}
+
+model Admin {
+  id     String @id @default(uuid())
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @unique
+}
+
+model Payment {
+  id               String   @id @default(uuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  expiresAt        DateTime
+  plan             PlanType
+  paymentConfirmed Boolean  @default(false)
+  company          Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId        String
+}
+
+model CompanySale {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String
+
+  employee   CompanyEmployee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId Int
+  offer      CompanyOffer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  offerId    Int
+  client     CompanyClient   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId   Int
+
+  title           String
+  comment         String
+  price           Float
+  paymentMode     String
+  installments    Int               @default(0)
+  CompanySchedule CompanySchedule[]
+}
+
+model CompanyExpense {
+  id        Int      @id @default(autoincrement())
+  company   Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String
+  title     String
+  comment   String
+  price     Float
+  date      DateTime
+  paid      Boolean  @default(false)
+}
+
+model CompanyClient {
+  id              Int               @id @default(autoincrement())
+  company         Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId       String
+  name            String
+  sex             String
+  birth           DateTime
+  description     String
+  tel             String
+  email           String
+  pipelineStage   String
+  CompanySchedule CompanySchedule[]
+  CompanySale     CompanySale[]
+}
+
+model CompanyClientRecord {
+  id        Int     @id @default(autoincrement())
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String  @unique
+  record    String
+}
+
+model CompanyOffer {
+  id              Int               @id @default(autoincrement())
+  company         Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId       String
+  type            OfferType         @default(SERVICE)
+  name            String
+  description     String
+  price           Float?
+  amountAvailable Int               @default(1)
+  CompanySchedule CompanySchedule[]
+  CompanySale     CompanySale[]
+}
+
+model CompanyEmployee {
+  id              Int               @id @default(autoincrement())
+  company         Company           @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId       String
+  name            String
+  cpf             String
+  email           String
+  tel             String
+  wage            Float
+  payDay          Int
+  schedulerColor  String
+  companySchedule CompanySchedule[]
+  CompanySale     CompanySale[]
+}
+
+model CompanySchedule {
+  id        Int     @id @default(autoincrement())
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId String
+
+  date        DateTime
+  hourStart   Float
+  hourEnd     Float
+  description String
+
+  confirmed Boolean @default(false)
+  done      Boolean @default(false)
+  paid      Boolean @default(false)
+
+  companySale   CompanySale?    @relation(fields: [companySaleId], references: [id], onDelete: Cascade)
+  companySaleId Int?
+  employee      CompanyEmployee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId    Int
+  offer         CompanyOffer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  offerId       Int
+  client        CompanyClient   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId      Int
+}
+
+model CompanyReminder {
+  id          Int      @id @default(autoincrement())
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId   String
+  date        DateTime
+  description String
+  done        Boolean  @default(false)
+}

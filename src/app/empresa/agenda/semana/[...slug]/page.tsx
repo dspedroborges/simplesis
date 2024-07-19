@@ -1,0 +1,68 @@
+import { getSession } from "@/auth";
+import prisma from "../../../../../../lib/prisma";
+import TopBar from "@/app/components/TopBar";
+import SchedulerOptions from "@/app/components/SchedulerOptions";
+import WeekScheduler from "@/app/components/WeekScheduler";
+
+function getNextSixDaysFromDate(inputDate: string) {
+    const startDate = new Date(inputDate);
+    const nextSixDays = [startDate.toISOString().split("T")[0]];
+
+    for (let i = 1; i <= 6; i++) {
+        const nextDay = new Date(startDate);
+        nextDay.setDate(startDate.getDate() + i);
+        nextSixDays.push(nextDay.toISOString().split("T")[0]);
+    }
+    
+    return nextSixDays;
+}
+
+export default async function Page({ params }: { params: { slug: string[] } }) {
+    const date = String(params.slug[0]);
+    const employeeId = Number(params.slug[1]);
+
+    const session = await getSession();
+    const company = await prisma.company.findUnique({
+        where: {
+            userId: String(session.user.id)
+        }
+    });
+
+    const weekDays = getNextSixDaysFromDate(date);
+
+    let schedulesMatrix = [];
+    for (let i = 0; i < weekDays.length; i++) {
+        const normalizedDate = new Date(weekDays[i] + "T00:00:00.000Z");
+        schedulesMatrix.push(
+            await prisma.companySchedule.findMany({
+                where: {
+                    companyId: company?.id,
+                    date: normalizedDate
+                },
+                include: {
+                    employee: true,
+                    client: true,
+                    offer: true,
+                }
+            })
+        )
+    }
+
+    const employees = await prisma.companyEmployee.findMany({
+        where: {
+            companyId: company?.id,
+        },
+        select: {
+            name: true,
+            id: true,
+        }
+    });
+
+    return (
+        <>
+            <TopBar title="Agenda" />
+            <SchedulerOptions type="semana" currentDate={date} employees={employees} />
+            <WeekScheduler header={["Hora", ...weekDays]} schedulesMatrix={schedulesMatrix} />
+        </>
+    )
+}
