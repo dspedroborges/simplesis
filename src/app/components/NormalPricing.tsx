@@ -1,20 +1,21 @@
-import Link from "next/link";
 import { createPayment } from "../actions/CreatePaymentAction";
+import { Suspense } from "react";
 
-export default async function NormalPricing({ title, description, price, link, features, time }: { title: string; description: string; price: string; link: string; features: string[], time: string }) {
+export default function NormalPricing({ title, description, price, link, features, time }: { title: string; description: string; price: string; link: string; features: string[], time: string }) {
     return (
-        <div className="flex flex-col space-y-4">
-            <div className="flex flex-col gap-4 rounded-lg border p-4 pt-6 h-[275px]">
-                <h3 className="text-center text-2xl font-semibold text-gray-800">
-                    {title}
-                </h3>
-                <div className="flex items-end justify-center gap-1">
-                    <span className="text-4xl font-bold text-gray-800">{price}</span>
-                    <span className="text-gray-500">/ {time}</span>
-                </div>
-                <div className="mb-4 flex items-center justify-center gap-1 text-sm text-gray-500">
-                    {description}
-                    {/* <svg
+        <Suspense>
+            <div className="flex flex-col space-y-4">
+                <div className="flex flex-col gap-4 rounded-lg border p-4 pt-6 h-[275px]">
+                    <h3 className="text-center text-2xl font-semibold text-gray-800">
+                        {title}
+                    </h3>
+                    <div className="flex items-end justify-center gap-1">
+                        <span className="text-4xl font-bold text-gray-800">{price}</span>
+                        <span className="text-gray-500">/ {time}</span>
+                    </div>
+                    <div className="mb-4 flex items-center justify-center gap-1 text-sm text-gray-500">
+                        {description}
+                        {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4"
                         viewBox="0 0 20 20"
@@ -26,47 +27,48 @@ export default async function NormalPricing({ title, description, price, link, f
                             clipRule="evenodd"
                         />
                     </svg> */}
-                </div>
-                <form action={createPayment} className="w-full">
-                    <input type="hidden" value={title} name="product" />
-                    <button
-                        className="w-full block rounded-lg bg-blue-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-600 focus-visible:ring active:text-gray-700 md:text-base"
-                    >
-                        Comprar
-                    </button>
-                </form>
-            </div>
-            {
-                features.length > 0 && (
-                    <div className="flex-1 space-y-3 rounded-lg bg-gray-100 px-4 py-6">
-                        {/* check - start */}
-                        {
-                            features.map((feature, i) => {
-                                return (
-                                    <div key={i} className="flex gap-2">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className="h-6 w-6 shrink-0 text-blue-500"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M5 13l4 4L19 7"
-                                            />
-                                        </svg>
-                                        <span className="text-gray-600">{feature}</span>
-                                    </div>
-                                )
-                            })
-                        }
-                        {/* check - end */}
                     </div>
-                )
-            }
-        </div>
+                    <form action={createPayment} className="w-full">
+                        <input type="hidden" value={title} name="product" />
+                        <button
+                            className="w-full block rounded-lg bg-blue-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-600 focus-visible:ring active:text-gray-700 md:text-base"
+                        >
+                            Comprar
+                        </button>
+                    </form>
+                </div>
+                {
+                    features.length > 0 && (
+                        <div className="flex-1 space-y-3 rounded-lg bg-gray-100 px-4 py-6">
+                            {/* check - start */}
+                            {
+                                features.map((feature, i) => {
+                                    return (
+                                        <div key={i} className="flex gap-2">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className="h-6 w-6 shrink-0 text-blue-500"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M5 13l4 4L19 7"
+                                                />
+                                            </svg>
+                                            <span className="text-gray-600">{feature}</span>
+                                        </div>
+                                    )
+                                })
+                            }
+                            {/* check - end */}
+                        </div>
+                    )
+                }
+            </div>
+        </Suspense>
     )
 }

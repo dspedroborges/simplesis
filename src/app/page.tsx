@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useGlobalContext } from "./components/providers/GlobalProvider";
 import PopularPricing from "./components/PopularPricing";
 import NormalPricing from "./components/NormalPricing";
@@ -14,58 +14,58 @@ import {
 
 const features = [
     {
-      "title": "Agenda",
-      "description": "A agenda possui duas opções de visualização: diária e semanal. Além disso, você pode definir cores para os funcionários."
+        "title": "Agenda",
+        "description": "A agenda possui duas opções de visualização: diária e semanal. Além disso, você pode definir cores para os funcionários."
     },
     {
-      "title": "Controle do que entra e sai",
-      "description": "O sistema permite o registro de vendas e gastos, de modo que você fique a par de tudo que entra e sai."
+        "title": "Controle do que entra e sai",
+        "description": "O sistema permite o registro de vendas e gastos, de modo que você fique a par de tudo que entra e sai."
     },
     {
-      "title": "Estatística de clientes",
-      "description": "Conheça o perfil do seu cliente, sabendo se a maioria é homem ou mulher, além da média de idade."
+        "title": "Estatística de clientes",
+        "description": "Conheça o perfil do seu cliente, sabendo se a maioria é homem ou mulher, além da média de idade."
     },
     {
-      "title": "Armazenamento criptografado dos dados sensíveis dos clientes",
-      "description": "Ainda que o sistema seja invadido por pessoas mal intencionadas, elas não conseguirão decifrar as informações sensíveis dos seus clientes, pois tudo estará criptografado no banco de dados."
+        "title": "Armazenamento criptografado dos dados sensíveis dos clientes",
+        "description": "Ainda que o sistema seja invadido por pessoas mal intencionadas, elas não conseguirão decifrar as informações sensíveis dos seus clientes, pois tudo estará criptografado no banco de dados."
     },
     {
-      "title": "Estatística mensal de vendas, gastos e lucros",
-      "description": "Saiba o quanto você vendeu, gastou e o quanto lucrou no mês."
+        "title": "Estatística mensal de vendas, gastos e lucros",
+        "description": "Saiba o quanto você vendeu, gastou e o quanto lucrou no mês."
     },
     {
-      "title": "Taxa de conversão",
-      "description": "O sistema verifica em qual estágio de venda está o seu cliente e calcula a taxa de conversão, isto é, a proporção de clientes que chegaram a fazer uma compra."
+        "title": "Taxa de conversão",
+        "description": "O sistema verifica em qual estágio de venda está o seu cliente e calcula a taxa de conversão, isto é, a proporção de clientes que chegaram a fazer uma compra."
     },
     {
-      "title": "Lembretes personalizados",
-      "description": "Nunca mais esqueça nenhum compromisso ou tarefa a ser realizada. Crie lembretes personalizados de acordo com a suas necessidades."
+        "title": "Lembretes personalizados",
+        "description": "Nunca mais esqueça nenhum compromisso ou tarefa a ser realizada. Crie lembretes personalizados de acordo com a suas necessidades."
     },
     {
-      "title": "Lembretes automáticos para clientes aniversariantes",
-      "description": "É sempre bom lembrar o aniversário de um cliente para mantê-lo próximo. Não se preocupe, o sistema faz isso por você."
+        "title": "Lembretes automáticos para clientes aniversariantes",
+        "description": "É sempre bom lembrar o aniversário de um cliente para mantê-lo próximo. Não se preocupe, o sistema faz isso por você."
     },
     {
-      "title": "Registro de clientes",
-      "description": "Algo fundamental para o funcionamento da agenda e dos lembretes."
+        "title": "Registro de clientes",
+        "description": "Algo fundamental para o funcionamento da agenda e dos lembretes."
     },
     {
-      "title": "Registro de produtos/serviços",
-      "description": "Catalogue tudo o que você oferece e tenha mais controle e conhecimento sobre o próprio negócio."
+        "title": "Registro de produtos/serviços",
+        "description": "Catalogue tudo o que você oferece e tenha mais controle e conhecimento sobre o próprio negócio."
     },
     {
-      "title": "Registro de funcionários",
-      "description": "Registre seus funcionários para que eles tenham cores na agenda e visualização separada."
+        "title": "Registro de funcionários",
+        "description": "Registre seus funcionários para que eles tenham cores na agenda e visualização separada."
     },
     {
-      "title": "Criador de fichas para clientes",
-      "description": "Prepare de antemão um conjunto fixo de perguntas que sempre aparecerão quando você for criar um cliente. Dessa forma, você pode criar suas fichas personalizadas e armazenar o que quiser sobre seus clientes."
+        "title": "Criador de fichas para clientes",
+        "description": "Prepare de antemão um conjunto fixo de perguntas que sempre aparecerão quando você for criar um cliente. Dessa forma, você pode criar suas fichas personalizadas e armazenar o que quiser sobre seus clientes."
     },
     {
-      "title": "Gerador de orçamento",
-      "description": "Preencha um simples formulário e gere um orçamento imediatamente."
+        "title": "Gerador de orçamento",
+        "description": "Preencha um simples formulário e gere um orçamento imediatamente."
     }
-  ]
+]
 
 const monthly = {
     title: 'Mensal',
@@ -103,7 +103,7 @@ const semiannual = {
     specialContent: 'Em breve'
 }
 
-export default function Home() {
+function Internal() {
     return (
         <>
             <section className="mx-auto max-w-screen-2xl px-4 md:px-8 pt-8">
@@ -262,5 +262,13 @@ export default function Home() {
                 </div>
             </div>
         </>
+    )
+}
+
+export default function Home() {
+    return (
+        <Suspense>
+            <Internal/>
+        </Suspense>
     )
 }
