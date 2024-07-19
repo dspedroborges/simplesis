@@ -115,7 +115,7 @@ function Internal() {
                             do Seu Negócio
                         </h1>
                         <p className="max-w-md leading-relaxed text-gray-500 xl:text-lg">
-                            Sistema simples e acessível para pequenas empresas que precisam gerenciar o seu negócio.
+                            Sistema simples e acessível para pequenas empresas que precisam gerenciar o seu negócio. Os dados dos seus clientes ficam <strong>criptografados</strong> na nuvem!
                         </p>
                     </div>
                     <div className="mb-12 flex w-full md:mb-16 lg:w-2/3">

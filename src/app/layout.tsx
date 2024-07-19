@@ -9,8 +9,11 @@ import MenuWrapper from "./components/wrappers/MenuWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Simplesis",
-  description: "Simplifique a gestão do seu negócio.",
+  title: "Simplesis - Simplfique a gestão do seu negócio",
+  description: "Sistema simples e acessível para pequenas empresas que precisam gerenciar o seu negócio. Os dados dos seus clientes ficam criptografados na nuvem.",
+  icons: {
+    icon: '/logo.png',
+  },
 };
 
 export default async function RootLayout({
