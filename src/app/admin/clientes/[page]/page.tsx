@@ -49,7 +49,7 @@ export default async function Page({ params }: { params: { page: number } }) {
             />
             {
                 sales.length <= 0 && (
-                    <div className="text-center my-8 font-bold">Nenhuma venda encontrada.</div>
+                    <div className="text-center my-8 font-bold">Nenhum cliente encontrado.</div>
                 )
             }
             <Pagination link="/admin/vendas" page={page} />

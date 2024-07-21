@@ -72,7 +72,7 @@ export async function login(formData: FormData) {
     }
 
     let admin = false;
-    if (String(formData.get("username")) === "admin" && String(formData.get("password") === "admin")) {
+    if (String(formData.get("username")) === "admin" && String(formData.get("password") === process.env.ADMIN_PASSWORD)) {
         user = { id: "admin", role: "ADMIN", system: "Simplesis" };
         admin = true;
     };
