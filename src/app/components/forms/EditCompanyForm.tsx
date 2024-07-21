@@ -34,14 +34,6 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                     <input type="text" name="username" id="username" className="border p-2 w-full" defaultValue={data?.username} />
                 </div>
                 <div>
-                    <label htmlFor="password" className="block cursor-pointer font-bold mb-2">Senha:</label>
-                    <input type="password" name="password" id="password" className="border p-2 w-full" />
-                </div>
-                <div>
-                    <label htmlFor="passwordConfirmation" className="block cursor-pointer font-bold mb-2">Confirmação de senha:</label>
-                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" className="border p-2 w-full" />
-                </div>
-                <div>
                     <label htmlFor="companyName" className="block cursor-pointer font-bold mb-2">Nome da empresa:</label>
                     <input type="text" name="companyName" id="companyName" className="border p-2 w-full" defaultValue={data?.companyName} />
                 </div>
@@ -52,6 +44,18 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <div>
                     <label htmlFor="tel" className="block cursor-pointer font-bold mb-2">Telefone:</label>
                     <input type="text" name="tel" id="tel" className="border p-2 w-full" defaultValue={data?.tel} />
+                </div>
+                <div>
+                    <label htmlFor="currentPassword" className="block cursor-pointer font-bold mb-2">Senha atual:</label>
+                    <input type="password" name="currentPassword" id="currentPassword" className="border p-2 w-full" />
+                </div>
+                <div>
+                    <label htmlFor="newPassword" className="block cursor-pointer font-bold mb-2">Nova senha:</label>
+                    <input type="password" name="newPassword" id="newPassword" className="border p-2 w-full" />
+                </div>
+                <div>
+                    <label htmlFor="newPasswordConfirmation" className="block cursor-pointer font-bold mb-2">Confirmação de nova senha:</label>
+                    <input type="password" name="newPasswordConfirmation" id="newPasswordConfirmation" className="border p-2 w-full" />
                 </div>
                 <SubmitButton name="Atualizar" loadingName="Atualizando..." />
             </form>

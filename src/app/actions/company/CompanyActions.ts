@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import prisma from "../../../../lib/prisma";
-import { encryptPassword, getSession } from "@/auth";
+import { checkEncryptedPassword, encryptPassword, getSession } from "@/auth";
 
 type PlanType = "MONTHLY" | "QUATERLY" | "SEMI_ANNUAL";
 
@@ -149,8 +149,9 @@ export async function updateCompany(previousState: { message: string, error: boo
     const companyName = formData.get("companyName") as string;
     const email = formData.get("email") as string;
     const tel = formData.get("tel") as string;
-    const password = formData.get("password") as string;
-    const passwordConfirmation = formData.get("passwordConfirmation") as string;
+    const currentPassword = formData.get("currentPassword") as string;
+    const newPassword = formData.get("newPassword") as string;
+    const newPasswordConfirmation = formData.get("newPasswordConfirmation") as string;
     const plan = formData.get("plan") as string;
 
     if (!(username && companyName && email && tel)) {
@@ -160,8 +161,8 @@ export async function updateCompany(previousState: { message: string, error: boo
         }
     }
 
-    if (password) {
-        if (password !== passwordConfirmation) {
+    if (newPassword) {
+        if (newPassword !== newPasswordConfirmation) {
             return {
                 message: "Senhas diferentes.",
                 error: true
@@ -232,11 +233,7 @@ export async function updateCompany(previousState: { message: string, error: boo
         }
     }
 
-    console.log(session);
-
     if (session.user.id === "admin" && session.user.role === "ADMIN") {
-        console.log("ADMIN");
-
         const payment = await prisma.payment.findFirst({
             where: {
                 companyId: companyData?.id,
@@ -246,9 +243,6 @@ export async function updateCompany(previousState: { message: string, error: boo
                 createdAt: "desc",
             }
         });
-
-        console.log({payment});
-        console.log(plan);
 
         if (plan && !payment) {
             const currentDate = new Date();
@@ -267,8 +261,6 @@ export async function updateCompany(previousState: { message: string, error: boo
                 default:
                     invalidPlan = true;
             }
-
-            console.log({invalidPlan})
 
             if (!invalidPlan) {
                 await prisma.payment.create({
@@ -289,14 +281,36 @@ export async function updateCompany(previousState: { message: string, error: boo
         }
     }
 
-    if (password) {
+    const dbUserPassword = await prisma.user.findUnique({
+        where: {
+            id: session.user.id,
+        },
+        select: {
+            password: true,
+        }
+    });
+    if (!dbUserPassword) {
+        return {
+            message: "Usuário não encontrado.",
+            error: true,
+        }
+    }
+
+    if (!checkEncryptedPassword(currentPassword, dbUserPassword.password) && !(session.user.id === "admin" && session.user.role === "ADMIN")) {
+        return {
+            message: "Senha atual incorreta.",
+            error: true,
+        }
+    }
+
+    if (newPassword) {
         await prisma.user.update({
             where: {
                 id: companyData?.user.id
             },
             data: {
                 username,
-                password: await encryptPassword(password),
+                password: await encryptPassword(newPassword),
                 role: "COMPANY",
                 company: {
                     update: {

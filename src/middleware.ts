@@ -6,13 +6,13 @@ export async function middleware(request: NextRequest) {
   const session = await getSession();
 
   if (request.nextUrl.pathname.startsWith('/empresa')) {
-    if (!session || session.user.role !== "COMPANY" || session.user.system !== "System") {
+    if (!session || session.user.role !== "COMPANY" || session.user.system !== "Simplesis" || !session.user.activePlan) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }
 
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    if (!session || session.user.role !== "ADMIN") {
+    if (!session || session.user.role !== "ADMIN" || session.user.system !== "Simplesis") {
       return NextResponse.redirect(new URL("/", request.url));
     }
   }

@@ -14,7 +14,7 @@ export async function encryptPassword(password: string) {
     }
 }
 
-async function checkEncryptedPassword(password: string, hash: string) {
+export async function checkEncryptedPassword(password: string, hash: string) {
     try {
         const match = await bcrypt.compare(password, hash)
         return match;
@@ -47,22 +47,37 @@ export async function login(formData: FormData) {
     const dbUser = await prisma.user.findUnique({
         where: {
             username: String(formData.get("username")),
+        },
+        include: {
+            company: true,
         }
     });
 
+    const validPayment = await prisma.payment.findFirst({
+        where: {
+          companyId: dbUser?.company?.id,
+          expiresAt: {
+            gte: new Date()
+          }
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
+      });
+
     if (dbUser) {
         if (await checkEncryptedPassword(String(formData.get("password")), dbUser.password)) {
-            user = { id: dbUser?.id, role: dbUser?.role, system: "System" };
+            user = { id: dbUser?.id, role: dbUser?.role, activePlan: validPayment ? true : false, system: "Simplesis" };
         }
     }
 
     let admin = false;
     if (String(formData.get("username")) === "admin" && String(formData.get("password") === "admin")) {
-        user = { id: "admin", role: "ADMIN", system: "System" };
+        user = { id: "admin", role: "ADMIN", system: "Simplesis" };
         admin = true;
     };
 
-    if (!dbUser && !admin) return "Credenciais inválidas.";
+    if (!dbUser && !admin) return false;
 
     // Create the session
     const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
@@ -70,6 +85,8 @@ export async function login(formData: FormData) {
 
     // Save the session in a cookie
     cookies().set("session", session, { expires, httpOnly: true }); // httpOnly means it can only be read on server side; it's safer
+
+    return true;
 }
 
 export async function logout() {
@@ -83,7 +100,7 @@ export async function getSession() {
     if (session) {
         const decrypted = await decrypt(session);
 
-        if (decrypted?.user?.system === "System") {
+        if (decrypted?.user?.system === "Simplesis") {
             return decrypted;
         }
 

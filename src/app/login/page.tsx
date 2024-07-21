@@ -1,11 +1,22 @@
-import { getSession, login } from "@/auth";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function Page() {
-  const session = await getSession();
-  if (session) {
-    redirect("/");
-  }
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+import { loginAction } from "../actions/LoginAction";
+
+export default function Page() {
+  const router = useRouter();
+  const [formState, action] = useFormState(loginAction, {
+    error: false,
+    message: ""
+  });
+
+  useEffect(() => {
+    if (!formState.error && formState.message !== "") router.push("/");
+  }, [formState]);
+
   return (
     <section>
       <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -13,12 +24,15 @@ export default async function Page() {
           <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
             Login
           </h2>
+          {
+            formState.error ? (
+              <div className="text-red-600 my-4 text-center">{formState.message}</div>
+            ) : (
+              <div className="text-green-600 my-4 text-center">{formState.message}</div>
+            )
+          }
           <form
-            action={async (formData) => {
-              "use server";
-              await login(formData);
-              redirect("/");
-            }}
+            action={action} defaultValue={formState.message}
             className="mx-auto max-w-lg rounded-lg border"
           >
             <div className="flex flex-col gap-4 p-4 md:p-8">
@@ -52,6 +66,7 @@ export default async function Page() {
               <button className="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base">
                 Log in
               </button>
+              <Link href="/esqueci-minha-senha" className="my-4 text-center hover:underline text-blue-600">Esqueci minha senha</Link>
             </div>
           </form>
         </div>

@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
@@ -30,14 +30,23 @@ enum PlanType {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id             String          @id @default(uuid())
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  username       String          @unique
+  password       String
+  role           UserRole        @default(USER)
+  admin          Admin?
+  company        Company?
+  ForgotPassword ForgotPassword?
+}
+
+model ForgotPassword {
+  id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  username  String   @unique
-  password  String
-  role      UserRole @default(USER)
-  admin     Admin?
-  company   Company?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @unique
+  token     String   @unique
 }
 
 model Company {

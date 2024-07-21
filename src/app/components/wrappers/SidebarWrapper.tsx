@@ -1,7 +1,7 @@
 import { getSession } from "@/auth";
 import prisma from "../../../../lib/prisma";
 import Sidebar from "../Sidebar";
-import { BsCalendar2Date, BsCurrencyDollar, BsHouse, BsImage, BsJournals, BsList, BsPeople } from "react-icons/bs";
+import { BsCalendar2Date, BsCurrencyDollar, BsHouse, BsImage, BsJournals, BsList, BsPeople, BsPerson } from "react-icons/bs";
 
 export default async function SidebarWrapper() {
     const session = await getSession();
@@ -143,6 +143,11 @@ export default async function SidebarWrapper() {
                 { name: "Editar", link: "/empresa/ficha/editar" },
             ],
             icon: <BsList/>
+        },
+        {
+            name: "Perfil",
+            link: "/empresa/perfil/",
+            icon: <BsPerson/>
         },
     ];
 
