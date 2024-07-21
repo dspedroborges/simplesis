@@ -1,12 +1,12 @@
 "use client";
 
 import { useFormState } from "react-dom";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import { useSearchParams } from 'next/navigation'
 import SubmitButton from "@/app/components/SubmitButton";
 import { resetPassword } from "@/app/actions/ResetPassword";
 
-export default function Page() {
+function Content() {
     const [formState, action] = useFormState(resetPassword, {
         error: false,
         message: ""
@@ -43,5 +43,13 @@ export default function Page() {
                 <SubmitButton name="Enviar" loadingName="Enviando..." />
             </form>
         </div>
+    )
+}
+
+export default function Page() {
+    return (
+        <Suspense>
+            <Content/>
+        </Suspense>
     )
 }
