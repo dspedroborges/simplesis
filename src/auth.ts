@@ -72,8 +72,8 @@ export async function login(formData: FormData) {
     }
 
     let admin = false;
-    if (String(formData.get("username")) === "admin" && String(formData.get("password") === process.env.ADMIN_PASSWORD)) {
-        user = { id: "admin", role: "ADMIN", system: "Simplesis" };
+    if (String(formData.get("username")) === "admin" && String(formData.get("password")) === process.env.ADMIN_PASSWORD) {
+        user = { id: "admin", role: "ADMIN", system: process.env.SYSTEM_NAME };
         admin = true;
     };
 
@@ -100,7 +100,7 @@ export async function getSession() {
     if (session) {
         const decrypted = await decrypt(session);
 
-        if (decrypted?.user?.system === "Simplesis") {
+        if (decrypted?.user?.system === process.env.SYSTEM_NAME) {
             return decrypted;
         }
 
