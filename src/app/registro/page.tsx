@@ -19,9 +19,10 @@ export default function Page() {
 
     return (
         <>
-            <h2 className="mt-8 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">
+            <h2 className="mt-8 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">
                 Registro
             </h2>
+            <p className="text-center mb-8 text-green-800">Para realizar uma compra, você primeiro deve se registrar e estar logado. Por favor, complete o cadastro abaixo e em seguida faça login.</p>
             {
                 formState.error ? (
                     <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
