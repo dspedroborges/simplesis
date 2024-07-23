@@ -11,7 +11,7 @@ export default function Whatsapp() {
     return (
         <>
             <div className="w-[75px] h-[75px] rounded-full fixed bottom-5 right-5 animate-ping bg-green-300 z-50"></div>
-            <Link href="https://wa.me/5561998746331?text=Olá" target="_blank">
+            <Link href="https://wa.me/5561996524269" target="_blank">
                 <img
                     src="/whatsapp.png"
                     alt="Whatsapp logo"
