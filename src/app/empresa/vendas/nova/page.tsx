@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import { Suspense } from 'react'
+import Spinner from "@/app/components/Spinner";
 
 function Internal() {
     const [formState, action] = useFormState(createCompanySale, {
@@ -95,7 +96,7 @@ export default function Page() {
 
 
     return (
-        <Suspense>
+        <Suspense fallback={<Spinner/>}>
             <Internal/>
         </Suspense>
     )

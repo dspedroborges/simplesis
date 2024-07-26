@@ -71,7 +71,7 @@ export async function createCompanySale(previousState: { message: string, error:
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -107,7 +107,7 @@ export async function updateCompanySale(previousState: { message: string, error:
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -121,5 +121,5 @@ export async function deleteCompanySale(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

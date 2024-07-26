@@ -1,7 +1,8 @@
 import { getSession } from "@/auth";
 import prisma from "../../../../lib/prisma";
 import Sidebar from "../Sidebar";
-import { BsCalendar2Date, BsCurrencyDollar, BsHouse, BsImage, BsJournals, BsList, BsPeople, BsPerson } from "react-icons/bs";
+import { BsCalendar2Date, BsCurrencyDollar, BsGraphUp, BsHouse, BsImage, BsJournals, BsList, BsPeople, BsPerson } from "react-icons/bs";
+import { endOfTodayUTC, startOfTodayUTC } from "@/utils";
 
 export default async function SidebarWrapper() {
     const session = await getSession();
@@ -32,10 +33,6 @@ export default async function SidebarWrapper() {
 
         return <Sidebar options={options} />
     }
-
-    const today = new Date();
-    const startOfTodayUTC = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()));
-    const endOfTodayUTC = new Date(Date.UTC(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59, 999));
 
     const countReminders = await prisma.companyReminder.count({
         where: {
@@ -73,6 +70,11 @@ export default async function SidebarWrapper() {
             name: "Início",
             link: "/empresa",
             icon: <BsHouse/>
+        },
+        {
+            name: "Dashboard",
+            link: "/empresa/dashboard",
+            icon: <BsGraphUp/>
         },
         {
             name: "Agendamentos",
@@ -138,10 +140,7 @@ export default async function SidebarWrapper() {
         },
         {
             name: "Ficha",
-            dropdown: [
-                { name: "Nova", link: "/empresa/ficha/nova" },
-                { name: "Editar", link: "/empresa/ficha/editar" },
-            ],
+            link: "/empresa/ficha/",
             icon: <BsList/>
         },
         {

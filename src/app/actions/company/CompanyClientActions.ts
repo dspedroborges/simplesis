@@ -44,14 +44,14 @@ export async function createCompanyClient(previousState: { message: string, erro
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
     }
 }
 
-export async function createCompanyClientRecord(previousState: { message: string, error: boolean }, formData: FormData) {
+export async function createOrEditCompanyClientRecord(previousState: { message: string, error: boolean }, formData: FormData) {
     const gottenId = await getLoggedCompanyId();
     if (!gottenId) {
         return {
@@ -102,7 +102,7 @@ export async function createCompanyClientRecord(previousState: { message: string
     }
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -142,7 +142,7 @@ export async function updateCompanyClient(previousState: { message: string, erro
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -156,5 +156,5 @@ export async function deleteCompanyClient(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

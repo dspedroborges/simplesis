@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { createPayment } from "../actions/CreatePaymentAction";
+import Spinner from "./Spinner";
 
 export default function PopularPricing({ title, description, price, link, features, soon, time }: { title: string; description: string; price: string; link: string; features: string[], soon: boolean, time: string }) {
     return (
-        <Suspense>
+        <Suspense fallback={<Spinner/>}>
             <div className="flex flex-col space-y-4">
                 <div className="relative flex flex-col gap-4 rounded-lg border border-blue-500 p-4 pt-6 h-[275px]">
                     <div className="absolute inset-x-0 -top-3 flex justify-center">

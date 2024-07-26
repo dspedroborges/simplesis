@@ -1,6 +1,5 @@
-import CreateClientForm from "@/app/components/forms/CreateClientForm";
 import { getSession } from "@/auth";
-import prisma from "../../../../../lib/prisma";
+import prisma from "../../../../lib/prisma";
 import EditClientRecordForm from "@/app/components/forms/EditClientRecordForm";
 
 export default async function Page() {
@@ -10,14 +9,12 @@ export default async function Page() {
             userId: String(session.user.id)
         }
     });
-
-    const companyClientRecord = await prisma.companyClientRecord.findFirst({
+    const record = await prisma.companyClientRecord.findUnique({
         where: {
             companyId: company?.id
         }
     });
 
-    return (
-        <EditClientRecordForm existingRecord={companyClientRecord?.record || ""} />
-    )
+
+    return <EditClientRecordForm record={record?.record || ""} />
 }

@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: { page: number } }) {
 
     return (
         <>
-            <TopBar title="Vendas" />
+            <TopBar title="Clientes" />
             <Table
                 header={["Plano", "Empresa", "Telefone", "Email", "Usuário"]}
                 list={sales}

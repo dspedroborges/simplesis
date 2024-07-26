@@ -48,7 +48,7 @@ export async function resetPassword(previousState: { error: boolean, message: st
     });
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Senha redefinida com sucesso.",
         error: false

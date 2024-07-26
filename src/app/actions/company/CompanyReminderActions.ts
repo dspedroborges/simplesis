@@ -32,7 +32,7 @@ export async function createCompanyReminder(previousState: { message: string, er
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -64,7 +64,7 @@ export async function updateCompanyReminder(previousState: { message: string, er
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -78,5 +78,5 @@ export async function deleteCompanyReminder(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

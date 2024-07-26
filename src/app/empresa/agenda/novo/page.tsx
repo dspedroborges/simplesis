@@ -8,6 +8,7 @@ import { useFormState } from "react-dom";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from "next/link";
 import { Suspense } from 'react'
+import Spinner from "@/app/components/Spinner";
 
 function Internal() {
     const searchParams = useSearchParams();
@@ -72,8 +73,8 @@ function Internal() {
                     <input type="number" name="hourEnd" id="hourEnd" className="border p-2 w-full" />
                 </div>
                 <div>
-                    <label htmlFor="paid" className="block cursor-pointer font-bold mb-2">Confirmado:</label>
-                    <select name="paid" id="paid" className="border p-2 w-full">
+                    <label htmlFor="confirmed" className="block cursor-pointer font-bold mb-2">Confirmado:</label>
+                    <select name="confirmed" id="confirmed" className="border p-2 w-full">
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
@@ -137,7 +138,7 @@ function Internal() {
 
 export default function Page() {
     return (
-        <Suspense>
+        <Suspense fallback={<Spinner/>}>
             <Internal/>
         </Suspense>
     )

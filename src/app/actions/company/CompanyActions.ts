@@ -104,7 +104,7 @@ export async function createCompany(previousState: { message: string, error: boo
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Empresa criada com sucesso.",
         error: false
@@ -341,7 +341,7 @@ export async function updateCompany(previousState: { message: string, error: boo
     }
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Empresa atualizada com sucesso.",
         error: false
@@ -374,5 +374,5 @@ export async function deleteCompany(id: string) {
         console.log(e);
     }
 
-    revalidatePath("/");
+    ;
 }

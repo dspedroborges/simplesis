@@ -1,9 +1,10 @@
 import { createPayment } from "../actions/CreatePaymentAction";
 import { Suspense } from "react";
+import Spinner from "./Spinner";
 
 export default function NormalPricing({ title, description, price, link, features, time }: { title: string; description: string; price: string; link: string; features: string[], time: string }) {
     return (
-        <Suspense>
+        <Suspense fallback={<Spinner/>}>
             <div className="flex flex-col space-y-4">
                 <div className="flex flex-col gap-4 rounded-lg border p-4 pt-6 h-[275px]">
                     <h3 className="text-center text-2xl font-semibold text-gray-800">

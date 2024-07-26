@@ -19,7 +19,7 @@ export default function Sidebar({ options }: { options: Record<string, any>[] })
                             {
                                 options && options.map((o: Record<string, any>, i: number) => {
                                     if (o.link) {
-                                        return <Link key={i} href={o.link} className="relative w-full py-4 bg-gray-800 hover:bg-gray-700 flex items-center justify-between p-2 border-b">
+                                        return <Link prefetch={false} key={i} href={o.link} className="relative w-full py-4 bg-gray-800 hover:bg-gray-700 flex items-center justify-between p-2 border-b">
                                             {
                                                 o.icon && (
                                                     o.icon
@@ -94,7 +94,7 @@ export function Dropdown({ name, dropdown, notify, icon }: { name: string, dropd
                     <div className="flex flex-col w-full">
                         {
                             dropdown.map((d, i) => {
-                                return <Link key={i} href={d.link} className="relative w-full py-4 bg-blue-950 hover:bg-blue-900 text-center border-b">
+                                return <Link prefetch={false} key={i} href={d.link} className="relative w-full py-4 bg-blue-950 hover:bg-blue-900 text-center border-b">
                                     <li>{d.name}</li>
                                     {
                                         (Number(d.notify) > 0) && (

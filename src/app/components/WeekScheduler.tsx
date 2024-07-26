@@ -32,14 +32,14 @@ export default function WeekScheduler({ header, schedulesMatrix }: { header: str
         <div className="p-4">
             <div className="flex text-center rounded-t-xl py-4 bg-gray-800 text-white">
                 {
-                    header.map((h, i) => {
-                        if (i === 0) {
-                            return <span key={i} className="text-[8px] lg:text-xs w-full text-center font-bold flex items-center justify-center">{h}</span>
+                    header.map((h) => {
+                        if (header.indexOf(h) === 0) {
+                            return <span key={h} className="text-[8px] lg:text-xs w-full text-center font-bold flex items-center justify-center">{h}</span>
                         }
 
                         const date = new Date(h);
                         return (
-                            <div key={i} className="text-[4px] lg:text-xs w-full text-center font-bold flex flex-col items-center justify-center">
+                            <div key={h} className="text-[4px] lg:text-xs w-full text-center font-bold flex flex-col items-center justify-center">
                                 {date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate()}/{(date.getUTCMonth() + 1) < 10 ? "0" + (date.getUTCMonth() + 1) : (date.getUTCMonth() + 1)}/{date.getUTCFullYear()}
 
                                 <span className="text-[4px] lg:text-xs text-gray-100">({getWeekDayName(new Date(h).getUTCDay())})</span>
@@ -51,8 +51,8 @@ export default function WeekScheduler({ header, schedulesMatrix }: { header: str
             <div className="flex">
                 <div className="w-[14.3%] text-center">
                     {
-                        hours.map((hour, i) => {
-                            return <div className="text-[8px] lg:text-xs h-[35px] bg-gray-700 hover:bg-gray-800 text-white border-b border-white flex items-center justify-center last:rounded-b-xl" key={i}>{hour}</div>
+                        hours.map((hour) => {
+                            return <div className="text-[8px] lg:text-xs h-[35px] bg-gray-700 hover:bg-gray-800 text-white border-b border-white flex items-center justify-center last:rounded-b-xl" key={hour}>{hour}</div>
                         })
                     }
                 </div>
@@ -74,14 +74,14 @@ function Column({ schedules, hours }: { schedules: Record<string, any>[], hours:
     return (
         <div className="w-full flex flex-col">
             {
-                hours.map((hour, i) => {
+                hours.map((hour) => {
                     const hourStart = isThereHourStart(hour, schedules);
                     const hourBusy = isThisHourBusy(hour, schedules);
                     if (hourStart) {
                         const range = (hourStart.hourEnd - hourStart.hourStart) + 1;
                         return (
                             <div
-                                key={i}
+                                key={hourStart.id} // Utilize um identificador único do objeto hourStart
                                 className="border rounded-xl border-white flex flex-col justify-around items-center"
                                 style={{ backgroundColor: hourStart.employee?.schedulerColor || "#eee", height: `${range * 35}px` }}
                             >
@@ -136,7 +136,7 @@ function Column({ schedules, hours }: { schedules: Record<string, any>[], hours:
 
                     if (!hourStart && !hourBusy) {
                         return (
-                            <div className="h-[35px]"></div>
+                            <div key={`empty-${hour}`} className="h-[35px]"></div>
                         )
                     }
                 })

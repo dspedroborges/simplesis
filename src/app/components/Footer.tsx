@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 export default function Footer() {
     const pathname = usePathname();
     
-    if (pathname !== "/" && pathname !== "/sobre" && pathname !== "/contato" && pathname !== "/registro" && !pathname.startsWith("/sucesso") && !pathname.startsWith("/cancelamento")) return <></>;
+    if (pathname.startsWith("/empresa")) return <></>;
 
     return (
         <div className="bg-white pt-4 sm:pt-10 lg:pt-12">

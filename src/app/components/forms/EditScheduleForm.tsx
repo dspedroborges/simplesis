@@ -48,16 +48,16 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                     <input type="number" name="hourEnd" id="hourEnd" className="border p-2 w-full" defaultValue={data?.hourEnd} />
                 </div>
                 <div>
-                    <label htmlFor="paid" className="block cursor-pointer font-bold mb-2">Confirmado:</label>
-                    <select name="paid" id="paid" className="border p-2 w-full" defaultValue={data?.confirmed}>
+                    <label htmlFor="confirmed" className="block cursor-pointer font-bold mb-2">Confirmado:</label>
+                    <select name="confirmed" id="confirmed" className="border p-2 w-full" defaultValue={data?.confirmed}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="paid" className="block cursor-pointer font-bold mb-2">Realizado:</label>
-                    <select name="paid" id="paid" className="border p-2 w-full" defaultValue={data?.done}>
+                    <label htmlFor="done" className="block cursor-pointer font-bold mb-2">Realizado:</label>
+                    <select name="done" id="done" className="border p-2 w-full" defaultValue={data?.done}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
@@ -65,7 +65,7 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 </div>
                 <div>
                     <label htmlFor="paid" className="block cursor-pointer font-bold mb-2">Pago:</label>
-                    <select name="paid" id="paid" className="border p-2 w-full" defaultValue={data?.paid}>
+                    <select name="paid" id="paid" className="border p-2 w-full" defaultValue={data?.paid} onChange={(e) => setIsPaid(Boolean(e.target.value))}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>

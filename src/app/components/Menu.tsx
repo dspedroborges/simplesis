@@ -9,7 +9,7 @@ export default function Menu({ loggedUser }: { loggedUser?: Record<string, strin
     const [showMenu, setShowMenu] = useState(false);
     const pathname = usePathname();
 
-    if (pathname !== "/" && pathname !== "/sobre" && pathname !== "/contato" && pathname !== "/registro" && !pathname.startsWith("/sucesso") && !pathname.startsWith("/cancelamento")) return <></>;
+    if (pathname.startsWith("/empresa")) return <></>;
 
     return (
         <header className="flex items-center justify-between px-4 py-4 bg-black">

@@ -36,7 +36,7 @@ export async function createCompanyExpense(previousState: { message: string, err
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -72,7 +72,7 @@ export async function updateCompanyExpense(previousState: { message: string, err
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -86,5 +86,5 @@ export async function deleteCompanyExpense(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

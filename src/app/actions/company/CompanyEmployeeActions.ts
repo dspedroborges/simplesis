@@ -42,7 +42,7 @@ export async function createCompanyEmployee(previousState: { message: string, er
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -82,7 +82,7 @@ export async function updateCompanyEmployee(previousState: { message: string, er
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -96,5 +96,5 @@ export async function deleteCompanyEmployee(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

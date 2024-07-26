@@ -13,7 +13,7 @@ export async function loginAction(previousState: { error: boolean, message: stri
         }
     }
 
-    revalidatePath("/");
+    ;
     return {
         error: true,
         message: "Credenciais inválidas."

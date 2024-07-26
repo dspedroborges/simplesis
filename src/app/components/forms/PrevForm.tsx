@@ -26,9 +26,6 @@ export default function PrevForm({ clients, employees, offers, redirect }: { cli
                     }
                 </select>
             </div>
-            {
-                selectedClient !== "" && <Link href={`/empresa/clientes/editar/${selectedClient.split("-")[0]}`} className="hover:underline text-blue-800">Clique aqui para alterar o estágio de venda do cliente selecionado.</Link>
-            }
             <div className="my-4">
                 <label htmlFor="employee" className="block cursor-pointer font-bold mb-2">Funcionário:</label>
                 <select name="employee" id="employee" className="border p-2 w-full" onChange={(e) => setSelectedEmployee(e.target.value)}>

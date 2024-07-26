@@ -38,7 +38,7 @@ export async function createCompanyOffer(previousState: { message: string, error
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -74,7 +74,7 @@ export async function updateCompanyOffer(previousState: { message: string, error
     })
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -88,5 +88,5 @@ export async function deleteCompanyOffer(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

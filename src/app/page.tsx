@@ -1,16 +1,9 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
-import { useGlobalContext } from "./components/providers/GlobalProvider";
+import { Suspense } from "react";
 import PopularPricing from "./components/PopularPricing";
 import NormalPricing from "./components/NormalPricing";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
+import Spinner from "./components/Spinner";
 
 const features = [
     {
@@ -60,10 +53,6 @@ const features = [
     {
         "title": "Criador de fichas para clientes",
         "description": "Prepare de antemão um conjunto fixo de perguntas que sempre aparecerão quando você for criar um cliente. Dessa forma, você pode criar suas fichas personalizadas e armazenar o que quiser sobre seus clientes."
-    },
-    {
-        "title": "Gerador de orçamento",
-        "description": "Preencha um simples formulário e gere um orçamento imediatamente."
     }
 ]
 
@@ -144,44 +133,6 @@ function Internal() {
                         <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">
                             Escolha seu plano
                         </h2>
-
-                        <Carousel className="lg:hidden max-w-full">
-                            <CarouselContent className="py-8">
-                                <CarouselItem>
-                                    <PopularPricing
-                                        time="mês"
-                                        title={monthly.title}
-                                        description={monthly.description}
-                                        price={monthly.price}
-                                        link={monthly.link}
-                                        features={monthly.features}
-                                        soon={false}
-                                    />
-                                </CarouselItem>
-                                <CarouselItem>
-                                    <NormalPricing
-                                        time="trimestre"
-                                        title={quaterly.title}
-                                        description={quaterly.description}
-                                        price={quaterly.price}
-                                        link={quaterly.link}
-                                        features={quaterly.features}
-                                    />
-                                </CarouselItem>
-                                <CarouselItem>
-                                    <NormalPricing
-                                        time="semestre"
-                                        title={semiannual.title}
-                                        description={semiannual.description}
-                                        price={semiannual.price}
-                                        link={semiannual.link}
-                                        features={semiannual.features}
-                                    />
-                                </CarouselItem>
-                            </CarouselContent>
-                            <CarouselPrevious className="absolute top-32 -translate-y-1/2 left-2 bg-gradient-to-r from-blue-700 to-blue-500 hover:opacity-80 text-white hover:text-white" />
-                            <CarouselNext className="absolute top-32 -translate-y-1/2 right-2 bg-gradient-to-r from-blue-700 to-blue-500 hover:opacity-80 text-white hover:text-white" />
-                        </Carousel>
 
                         <div className="mb-6 gap-x-6 gap-y-12 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 lg:gap-x-8 hidden lg:grid">
                             <PopularPricing
@@ -267,7 +218,7 @@ function Internal() {
 
 export default function Home() {
     return (
-        <Suspense>
+        <Suspense fallback={<Spinner/>}>
             <Internal/>
         </Suspense>
     )

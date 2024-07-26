@@ -66,6 +66,25 @@ export async function createCompanySchedule(previousState: { message: string, er
             }
         });
         companySaleId = result.id;
+
+        const clientInfo = await prisma.companyClient.findUnique({
+            where: {
+                id: clientId,
+            },
+            select: {
+                pipelineStage: true,
+            }
+        });
+
+        await prisma.companyClient.update({
+            where: {
+                id: clientId,
+                companyId: companyId,
+            },
+            data: {
+                pipelineStage: clientInfo?.pipelineStage !== "Compra" ? "Compra" : "Renovação",
+            }
+        });
     }
 
     let data: any = {
@@ -117,7 +136,7 @@ export async function createCompanySchedule(previousState: { message: string, er
     });
 
     // returns
-    revalidatePath("/");
+    ;
     return {
         message: "Ok.",
         error: false
@@ -142,6 +161,10 @@ export async function updateCompanySchedule(previousState: { message: string, er
     const confirmed = Boolean(formData.get("confirmed"));
     const paid = Boolean(formData.get("paid"));
     const done = Boolean(formData.get("done"));
+
+    console.log(formData.get("confirmed"));
+    console.log(formData.get("done"));
+    console.log(formData.get("paid"));
 
     // sale options
     const title = formData.get("title") as string;
@@ -177,9 +200,29 @@ export async function updateCompanySchedule(previousState: { message: string, er
             }
         });
         companySaleId = result.id;
+
+        const clientInfo = await prisma.companyClient.findUnique({
+            where: {
+                id: foundSchedule.clientId,
+            },
+            select: {
+                pipelineStage: true,
+            }
+        });
+
+        await prisma.companyClient.update({
+            where: {
+                id: foundSchedule.clientId,
+                companyId: companyId,
+            },
+            data: {
+                pipelineStage: clientInfo?.pipelineStage !== "Compra" ? "Compra" : "Renovação",
+            }
+        });
+
     }
 
-    let data: Record<string, string|boolean|number|Date> = {
+    let data: Record<string, string | boolean | number | Date> = {
         date,
         hourStart,
         hourEnd,
@@ -193,6 +236,8 @@ export async function updateCompanySchedule(previousState: { message: string, er
         if (companySaleId) data.companySaleId = companySaleId;
     }
 
+    console.log(data);
+
     await prisma.companySchedule.update({
         where: {
             id
@@ -200,8 +245,8 @@ export async function updateCompanySchedule(previousState: { message: string, er
         data,
     })
 
-    // returns
-    revalidatePath("/");
+        // returns
+        ;
     return {
         message: "Ok.",
         error: false
@@ -215,5 +260,5 @@ export async function deleteCompanySchedule(id: number) {
         }
     });
 
-    revalidatePath("/");
+    ;
 }

@@ -5,6 +5,7 @@ import { Suspense, useRef } from "react";
 import { useSearchParams } from 'next/navigation'
 import SubmitButton from "@/app/components/SubmitButton";
 import { resetPassword } from "@/app/actions/ResetPassword";
+import Spinner from "@/app/components/Spinner";
 
 function Content() {
     const [formState, action] = useFormState(resetPassword, {
@@ -48,7 +49,7 @@ function Content() {
 
 export default function Page() {
     return (
-        <Suspense>
+        <Suspense fallback={<Spinner/>}>
             <Content/>
         </Suspense>
     )
