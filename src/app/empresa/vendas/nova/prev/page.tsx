@@ -32,7 +32,7 @@ export default async function Page() {
     return (
         <>
             <TopBar title="Informações prévias" />
-            <PrevForm clients={clients} employees={employees} offers={offers} redirect="/empresa/venda/nova" />
+            <PrevForm clients={clients} employees={employees} offers={offers} redirect="/empresa/vendas/nova" />
         </>
     )
 }

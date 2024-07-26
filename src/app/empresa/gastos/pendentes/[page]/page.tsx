@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: { page: number } }) {
         <>
             <TopBar title="Gastos pendentes" />
             <Table
-                header={["Título", "Comentário", "Preço", "Data"]}
+                header={["Título", "Comentário", "Preço", "Data", "Pago"]}
                 includeEdition={true}
                 includeDeletion={true}
                 deleteAction={deleteCompanyExpense}

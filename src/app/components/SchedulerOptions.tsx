@@ -12,8 +12,8 @@ export default function SchedulerOptions({ type, currentDate, employees }: { typ
     const [employee, setEmployee] = useState(employees[0].id);
 
     return (
-        <>
-            <div className="flex flex-col lg:flex-row justify-around items-center my-4 h-[50px]">
+        <div>
+            <div className="flex flex-col lg:flex-row justify-around items-center my-4 lg:h-[50px]">
                 <div className="flex flex-col lg:flex-row w-full lg:w-1/3 gap-2">
                     <input type="date" className="w-full border p-2 rounded-xl" defaultValue={currentDate} onChange={(e) => setDate(e.target.value.split("T")[0])} />
                     <select onChange={(e) => setEmployee(e.target.value)} className="w-full p-2 rounded-xl border">
@@ -33,6 +33,6 @@ export default function SchedulerOptions({ type, currentDate, employees }: { typ
                 </Link>
             </div>
             <Searcher url="/empresa/agenda/busca" />
-        </>
+        </div>
     )
 }

@@ -28,10 +28,10 @@ export default async function Page({ params }: { params: { page: number } }) {
 
     return (
         <>
-            <TopBar title="Gastaos pagos" />
+            <TopBar title="Gastos pagos" />
             <Searcher url="/empresa/gastos/busca" />
             <Table
-                header={["Título", "Comentário", "Preço", "Data"]}
+                header={["Título", "Comentário", "Preço", "Data", "Pago"]}
                 includeEdition={true}
                 includeDeletion={true}
                 deleteAction={deleteCompanyExpense}

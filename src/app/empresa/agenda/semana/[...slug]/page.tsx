@@ -1,8 +1,8 @@
 import { getSession } from "@/auth";
 import prisma from "../../../../../../lib/prisma";
-import TopBar from "@/app/components/TopBar";
-import SchedulerOptions from "@/app/components/SchedulerOptions";
 import WeekScheduler from "@/app/components/WeekScheduler";
+import SchedulerOptions from "@/app/components/SchedulerOptions";
+import TopBar from "@/app/components/TopBar";
 
 function getNextSixDaysFromDate(inputDate: string) {
     const startDate = new Date(inputDate);
@@ -60,7 +60,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
     return (
         <>
-            <TopBar title="Agenda" />
+            <TopBar title="Agenda: semana" />
             <SchedulerOptions type="semana" currentDate={date} employees={employees} />
             <WeekScheduler header={["Hora", ...weekDays]} schedulesMatrix={schedulesMatrix} />
         </>

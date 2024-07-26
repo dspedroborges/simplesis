@@ -1,8 +1,8 @@
 import { getSession } from "@/auth";
-import prisma from "../../../../../../lib/prisma";
-import TopBar from "@/app/components/TopBar";
-import SchedulerOptions from "@/app/components/SchedulerOptions";
 import DayScheduler from "@/app/components/DayScheduler";
+import prisma from "../../../../../../lib/prisma";
+import SchedulerOptions from "@/app/components/SchedulerOptions";
+import TopBar from "@/app/components/TopBar";
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
     const date = String(params.slug[0]);
@@ -54,7 +54,6 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         });
     }
 
-
     const employees = await prisma.companyEmployee.findMany({
         where: {
             companyId: company?.id,
@@ -67,7 +66,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
     return (
         <>
-            <TopBar title="Agenda" />
+            <TopBar title="Agenda: dia" />
             <SchedulerOptions type="dia" currentDate={date} employees={employees} />
             <DayScheduler header={["Hora", "Descrição", "Funcionário", "Produto/serviço", "Cliente", "Editar", "Deletar"]} schedules={schedules} />
         </>
