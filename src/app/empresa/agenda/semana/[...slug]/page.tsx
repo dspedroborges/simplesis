@@ -29,24 +29,23 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
     });
 
     const weekDays = getNextSixDaysFromDate(date);
-
-    let schedulesMatrix = [];
-    for (let i = 0; i < weekDays.length; i++) {
-        const normalizedDate = new Date(weekDays[i] + "T00:00:00.000Z");
-        schedulesMatrix.push(
-            await prisma.companySchedule.findMany({
-                where: {
-                    companyId: company?.id,
-                    date: normalizedDate
-                },
-                include: {
-                    employee: true,
-                    client: true,
-                    offer: true,
-                }
-            })
-        )
-    }
+    const schedulesPromises = weekDays.map(day => {
+        const normalizedDate = new Date(day + "T00:00:00.000Z");
+    
+        return prisma.companySchedule.findMany({
+            where: {
+                companyId: company?.id,
+                date: normalizedDate
+            },
+            include: {
+                employee: true,
+                client: true,
+                offer: true,
+            }
+        });
+    });
+    
+    const schedulesMatrix = await Promise.all(schedulesPromises);
 
     const employees = await prisma.companyEmployee.findMany({
         where: {

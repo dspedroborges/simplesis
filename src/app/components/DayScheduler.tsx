@@ -2,6 +2,7 @@ import Link from "next/link";
 import SubmitConfirmationButton from "./SubmitConfirmationButton";
 import { deleteCompanySchedule } from "../actions/company/CompanyScheduleActions";
 import { BsCheck2Square, BsCurrencyDollar, BsHandThumbsDown, BsHandThumbsUp, BsPencilSquare, BsSquare } from "react-icons/bs";
+import { memo } from "react";
 
 export const createNumbersList = (start: number, end: number) => {
     let list = [];
@@ -32,7 +33,7 @@ export const isThisHourBusy = (hour: number, schedules: Record<string, any>[]) =
     return false;
 }
 
-export default function DayScheduler({ header, schedules }: { header: string[], schedules: Record<string, any>[] }) {
+export default memo(function DayScheduler({ header, schedules }: { header: string[], schedules: Record<string, any>[] }) {
     const hours = createNumbersList(8, 21);
 
     return (
@@ -112,4 +113,4 @@ export default function DayScheduler({ header, schedules }: { header: string[], 
             </div>
         </>
     )
-}
+})

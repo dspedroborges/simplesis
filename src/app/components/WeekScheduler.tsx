@@ -5,7 +5,7 @@ import SubmitConfirmationButton from "./SubmitConfirmationButton";
 import { deleteCompanySchedule } from "../actions/company/CompanyScheduleActions";
 import { createNumbersList, isThereHourStart, isThisHourBusy } from "./DayScheduler";
 import { BsCheck2Square, BsCurrencyDollar, BsHandThumbsDown, BsHandThumbsUp, BsInfoCircle, BsPencilSquare, BsPlusCircle, BsSquare, BsX } from "react-icons/bs";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 function getWeekDayName(dayNumber: number) {
     const weekDays = [
@@ -25,7 +25,7 @@ function getWeekDayName(dayNumber: number) {
     return weekDays[dayNumber];
 }
 
-export default function WeekScheduler({ header, schedulesMatrix }: { header: string[], schedulesMatrix: Record<string, any>[][] }) {
+export default memo(function WeekScheduler({ header, schedulesMatrix }: { header: string[], schedulesMatrix: Record<string, any>[][] }) {
     const hours = createNumbersList(8, 21);
 
     return (
@@ -66,7 +66,7 @@ export default function WeekScheduler({ header, schedulesMatrix }: { header: str
             </div>
         </div>
     )
-}
+})
 
 function Column({ schedules, hours }: { schedules: Record<string, any>[], hours: number[] }) {
     const [showModal, setShowModal] = useState(false);
