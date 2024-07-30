@@ -3,6 +3,7 @@ import prisma from "../../../../lib/prisma";
 import Sidebar from "../Sidebar";
 import { BsCalendar2Date, BsCurrencyDollar, BsGraphUp, BsHouse, BsImage, BsJournals, BsList, BsPeople, BsPerson } from "react-icons/bs";
 import { endOfTodayUTC, startOfTodayUTC } from "@/utils";
+import { redirect } from "next/navigation";
 
 export default async function SidebarWrapper() {
     const session = await getSession();
@@ -17,21 +18,37 @@ export default async function SidebarWrapper() {
             {
                 name: "Início",
                 link: "/admin",
-                icon: <BsHouse/>
+                icon: <BsHouse />
             },
             {
                 name: "Vendas",
                 link: "/admin/vendas/1",
-                icon: <BsList/>
+                icon: <BsList />
             },
             {
                 name: "Clientes",
                 link: "/admin/clientes/1",
-                icon: <BsList/>,
+                icon: <BsList />,
             },
         ]
 
         return <Sidebar options={options} />
+    }
+
+    const validPayment = await prisma.payment.findFirst({
+        where: {
+            companyId: company?.id,
+            expiresAt: {
+                gte: new Date()
+            }
+        },
+        orderBy: {
+            createdAt: "desc"
+        }
+    });
+
+    if (!validPayment) {
+        redirect("/#planos");
     }
 
     const countReminders = await prisma.companyReminder.count({
@@ -69,12 +86,12 @@ export default async function SidebarWrapper() {
         {
             name: "Início",
             link: "/empresa",
-            icon: <BsHouse/>
+            icon: <BsHouse />
         },
         {
             name: "Dashboard",
             link: "/empresa/dashboard",
-            icon: <BsGraphUp/>
+            icon: <BsGraphUp />
         },
         {
             name: "Agendamentos",
@@ -83,7 +100,7 @@ export default async function SidebarWrapper() {
                 { name: "Agenda por semana", link: `/empresa/agenda/semana/${new Date().toISOString().split("T")[0]}/${firstEmployee?.id || 0}` },
                 { name: "Novo", link: "/empresa/agenda/novo/prev" },
             ],
-            icon: <BsCalendar2Date/>
+            icon: <BsCalendar2Date />
         },
         {
             name: "Lembretes",
@@ -93,7 +110,7 @@ export default async function SidebarWrapper() {
                 { name: "Pendentes", link: "/empresa/lembretes/pendentes/1", notify: countReminders },
                 { name: "Realizados", link: "/empresa/lembretes/realizados/1" },
             ],
-            icon: <BsJournals/>
+            icon: <BsJournals />
         },
         {
             name: "Clientes",
@@ -101,7 +118,7 @@ export default async function SidebarWrapper() {
                 { name: "Novo", link: "/empresa/clientes/novo" },
                 { name: "Todos", link: "/empresa/clientes/todos/1" },
             ],
-            icon: <BsPeople/>
+            icon: <BsPeople />
         },
         {
             name: "Vendas",
@@ -109,7 +126,7 @@ export default async function SidebarWrapper() {
                 { name: "Nova", link: "/empresa/vendas/nova/prev" },
                 { name: "Todas", link: "/empresa/vendas/todas/1" },
             ],
-            icon: <BsList/>
+            icon: <BsList />
         },
         {
             name: "Gastos",
@@ -120,7 +137,7 @@ export default async function SidebarWrapper() {
                 { name: "Pagos", link: "/empresa/gastos/pagos/1" },
 
             ],
-            icon: <BsCurrencyDollar/>
+            icon: <BsCurrencyDollar />
         },
         {
             name: "Funcionários",
@@ -128,7 +145,7 @@ export default async function SidebarWrapper() {
                 { name: "Novo", link: "/empresa/funcionario/novo" },
                 { name: "Todos", link: "/empresa/funcionario/todos/1" },
             ],
-            icon: <BsPeople/>
+            icon: <BsPeople />
         },
         {
             name: "Produtos/serviços",
@@ -136,17 +153,17 @@ export default async function SidebarWrapper() {
                 { name: "Novo", link: "/empresa/produtos-servicos/novo" },
                 { name: "Todos", link: "/empresa/produtos-servicos/todos/1" },
             ],
-            icon: <BsList/>
+            icon: <BsList />
         },
         {
             name: "Ficha",
             link: "/empresa/ficha/",
-            icon: <BsList/>
+            icon: <BsList />
         },
         {
             name: "Perfil",
             link: "/empresa/perfil/",
-            icon: <BsPerson/>
+            icon: <BsPerson />
         },
     ];
 

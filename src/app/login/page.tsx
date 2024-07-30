@@ -14,7 +14,11 @@ export default function Page() {
   });
 
   useEffect(() => {
-    if (!formState.error && formState.message !== "") router.push("/");
+    if (!formState.error && formState.message !== "") {
+      setTimeout(() => {
+        router.push("/empresa");
+      }, 1000)
+    }
   }, [formState]);
 
   return (

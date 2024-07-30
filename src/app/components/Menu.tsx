@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { BsPerson, BsX } from "react-icons/bs";
+import Logout from "./Logout";
 
 export default function Menu({ loggedUser }: { loggedUser?: Record<string, string> }) {
     const [showMenu, setShowMenu] = useState(false);
@@ -42,12 +43,15 @@ export default function Menu({ loggedUser }: { loggedUser?: Record<string, strin
             {/* buttons - start */}
             {
                 loggedUser ? (
-                    <Link
-                        href={ loggedUser.role === "COMPANY" ? "/empresa" : "/admin" }
-                        className="fixed bottom-2 left-2 lg:relative rounded-lg bg-gray-800 z-40 lg:z-auto p-2 text-center text-sm font-semibold text-white outline-none transition duration-100 hover:bg-white hover:text-blue-800 focus-visible:ring md:text-base lg:inline-block mr-2"
-                    >
-                        <BsPerson className="text-2xl inline" />
-                    </Link>
+                    <>
+                        <Link
+                            href={loggedUser.role === "COMPANY" ? "/empresa" : "/admin"}
+                            className="fixed bottom-2 left-2 lg:relative rounded-lg bg-gray-800 z-40 lg:z-auto p-2 text-center text-sm font-semibold text-white outline-none transition duration-100 hover:bg-white hover:text-blue-800 focus-visible:ring md:text-base lg:inline-block mr-2"
+                        >
+                            <BsPerson className="text-2xl inline" />
+                        </Link>
+                        <Logout/>
+                    </>
                 ) : (
                     <Link
                         href={"/login"}

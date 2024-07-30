@@ -52,22 +52,10 @@ export async function login(formData: FormData) {
             company: true,
         }
     });
-
-    const validPayment = await prisma.payment.findFirst({
-        where: {
-          companyId: dbUser?.company?.id,
-          expiresAt: {
-            gte: new Date()
-          }
-        },
-        orderBy: {
-          createdAt: "desc"
-        }
-      });
-
+    
     if (dbUser) {
         if (await checkEncryptedPassword(String(formData.get("password")), dbUser.password)) {
-            user = { id: dbUser?.id, role: dbUser?.role, activePlan: validPayment ? true : false, system: "Simplesis" };
+            user = { id: dbUser?.id, role: dbUser?.role, system: "Simplesis" };
         }
     }
 

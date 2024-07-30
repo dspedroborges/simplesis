@@ -1,13 +1,11 @@
 
-import Link from "next/link";
-import prisma from "../../../../lib/prisma";
 import { decryptAES } from "@/crypto";
 import { redirect } from "next/navigation";
+import prisma from "../../../../lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export default async function Sucesso({ params }: { params: { id: string } }) {
     const [successKey, id] = params.id ? decryptAES(params.id).split("_") : ["", ""];
-
-    console.log({successKey, id});
 
     if (successKey === process.env.SUCCESS_KEY) {
         await prisma.payment.update({
@@ -18,6 +16,8 @@ export default async function Sucesso({ params }: { params: { id: string } }) {
                 paymentConfirmed: true,
             }
         });
+
+        revalidatePath("/", "layout");
     } else {
         redirect("/");
     }

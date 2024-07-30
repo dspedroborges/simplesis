@@ -134,7 +134,7 @@ function Internal() {
                             Escolha seu plano
                         </h2>
 
-                        <div className="mb-6 gap-x-6 gap-y-12 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 lg:gap-x-8 hidden lg:grid">
+                        <div className="mb-6 gap-x-6 gap-y-12 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 lg:gap-x-8 grid">
                             <PopularPricing
                                 time={"mês"}
                                 title={monthly.title}

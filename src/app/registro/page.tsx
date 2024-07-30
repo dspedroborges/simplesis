@@ -2,6 +2,7 @@
 
 import { createCompany } from "@/app/actions/company/CompanyActions";
 import SubmitButton from "@/app/components/SubmitButton";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useFormState } from "react-dom";
 
@@ -12,9 +13,13 @@ export default function Page() {
     } as { message: string, error: boolean });
 
     const formRef = useRef<HTMLFormElement>(null);
+    const router = useRouter();
 
     if (!formState.error && formState.message !== "") {
         formRef.current?.reset();
+        setTimeout(() => {
+            router.push("/login");
+        }, 1000);
     }
 
     return (
