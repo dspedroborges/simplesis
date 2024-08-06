@@ -40,7 +40,7 @@ export async function createCompanyOffer(previousState: { message: string, error
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Produto/serviço criado com sucesso.",
         error: false
     }
 }
@@ -76,7 +76,7 @@ export async function updateCompanyOffer(previousState: { message: string, error
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Produto/serviço atualizado com sucesso.",
         error: false
     }
 }

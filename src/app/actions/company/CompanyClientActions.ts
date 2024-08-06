@@ -46,7 +46,7 @@ export async function createCompanyClient(previousState: { message: string, erro
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Cliente criado com sucesso.",
         error: false
     }
 }
@@ -104,7 +104,7 @@ export async function createOrEditCompanyClientRecord(previousState: { message: 
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Ficha atualizada com sucesso.",
         error: false
     }
 }
@@ -144,7 +144,7 @@ export async function updateCompanyClient(previousState: { message: string, erro
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Cliente atualizado com sucesso.",
         error: false
     }
 }

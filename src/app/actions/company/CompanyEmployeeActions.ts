@@ -44,7 +44,7 @@ export async function createCompanyEmployee(previousState: { message: string, er
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Funcionário criado com sucesso.",
         error: false
     }
 }
@@ -84,7 +84,7 @@ export async function updateCompanyEmployee(previousState: { message: string, er
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Funcionário atualizado com sucesso.",
         error: false
     }
 }

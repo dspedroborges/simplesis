@@ -76,7 +76,7 @@ export async function sendMailForgotPassword(previousState: { error: boolean, me
     }
 
     return {
-        message: "Email enviado.",
+        message: "Email enviado com sucesso.",
         error: false
     }
 }

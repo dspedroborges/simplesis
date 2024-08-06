@@ -29,12 +29,12 @@ export async function createCompanyReminder(previousState: { message: string, er
             date,
             description,
         },
-    })
+    });
 
+    revalidatePath("/");
     // returns
-    ;
     return {
-        message: "Ok.",
+        message: "Lembrete criado com sucesso.",
         error: false
     }
 }
@@ -61,12 +61,12 @@ export async function updateCompanyReminder(previousState: { message: string, er
             description,
             done,
         },
-    })
+    });
 
+    revalidatePath("/");
     // returns
-    ;
     return {
-        message: "Ok.",
+        message: "Lembrete atualizado com sucesso.",
         error: false
     }
 }

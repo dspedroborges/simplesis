@@ -5,6 +5,7 @@ import SubmitButton from "@/app/components/SubmitButton";
 import TopBar from "@/app/components/TopBar";
 import { useRef } from "react";
 import { useFormState } from "react-dom";
+import Toast from "../Toast";
 
 export default function EditClientRecordForm({ record }: { record?: string }) {
     const [formState, action] = useFormState(createOrEditCompanyClientRecord, {
@@ -22,10 +23,14 @@ export default function EditClientRecordForm({ record }: { record?: string }) {
         <>
             <TopBar title="Ficha para cliente" />
             {
-                formState.error ? (
-                    <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
-                ) : (
-                    <div className="text-green-600 my-4 text-center font-bold">{formState.message}</div>
+                formState.error && (
+                    <Toast content={formState.message} type="danger" />
+                )
+            }
+
+            {
+                (!formState.error && formState.message !== "") && (
+                    <Toast content={formState.message} type="success" />
                 )
             }
 

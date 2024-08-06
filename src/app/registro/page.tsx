@@ -5,6 +5,7 @@ import SubmitButton from "@/app/components/SubmitButton";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useFormState } from "react-dom";
+import Toast from "../components/Toast";
 
 export default function Page() {
     const [formState, action] = useFormState(createCompany, {
@@ -29,10 +30,14 @@ export default function Page() {
             </h2>
             <p className="text-center mb-8 text-green-800">Para realizar uma compra, você primeiro deve se registrar e estar logado. Por favor, complete o cadastro abaixo e em seguida faça login.</p>
             {
-                formState.error ? (
-                    <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
-                ) : (
-                    <div className="text-green-600 my-4 text-center font-bold">{formState.message}</div>
+                formState.error && (
+                    <Toast content={formState.message} type="danger" />
+                )
+            }
+
+            {
+                (!formState.error && formState.message !== "") && (
+                    <Toast content={formState.message} type="success" />
                 )
             }
 

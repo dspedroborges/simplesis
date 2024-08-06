@@ -2,6 +2,7 @@
 
 import { createCompanyReminder } from "@/app/actions/company/CompanyReminderActions";
 import SubmitButton from "@/app/components/SubmitButton";
+import Toast from "@/app/components/Toast";
 import TopBar from "@/app/components/TopBar";
 import { useRef } from "react";
 import { useFormState } from "react-dom";
@@ -22,10 +23,14 @@ export default function Page() {
         <>
             <TopBar title="Novo lembrete" />
             {
-                formState.error ? (
-                    <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
-                ) : (
-                    <div className="text-green-600 my-4 text-center font-bold">{formState.message}</div>
+                formState.error && (
+                    <Toast content={formState.message} type="danger" />
+                )
+            }
+
+            {
+                (!formState.error && formState.message !== "") && (
+                    <Toast content={formState.message} type="success" />
                 )
             }
 

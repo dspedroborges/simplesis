@@ -73,7 +73,7 @@ export async function createCompanySale(previousState: { message: string, error:
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Venda criada com sucesso.",
         error: false
     }
 }
@@ -109,7 +109,7 @@ export async function updateCompanySale(previousState: { message: string, error:
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Venda atualizada com sucesso.",
         error: false
     }
 }

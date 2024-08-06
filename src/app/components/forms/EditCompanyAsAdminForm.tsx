@@ -4,6 +4,7 @@ import { updateCompany } from "@/app/actions/company/CompanyActions";
 import SubmitButton from "@/app/components/SubmitButton";
 import { useRef } from "react";
 import { useFormState } from "react-dom";
+import Toast from "../Toast";
 
 export default function EditCompanyAsAdminForm({ data }: { data: Record<string, string | any> | null }) {
     const [formState, action] = useFormState(updateCompany, {
@@ -20,10 +21,14 @@ export default function EditCompanyAsAdminForm({ data }: { data: Record<string, 
     return (
         <>
             {
-                formState.error ? (
-                    <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
-                ) : (
-                    <div className="text-green-600 my-4 text-center font-bold">{formState.message}</div>
+                formState.error && (
+                    <Toast content={formState.message} type="danger" />
+                )
+            }
+
+            {
+                (!formState.error && formState.message !== "") && (
+                    <Toast content={formState.message} type="success" />
                 )
             }
 

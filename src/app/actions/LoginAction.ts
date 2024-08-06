@@ -1,7 +1,6 @@
 "use server";
 
 import { login } from "@/auth";
-import { revalidatePath } from "next/cache";
 
 export async function loginAction(previousState: { error: boolean, message: string }, formData: FormData) {
     const result = await login(formData);
@@ -9,7 +8,7 @@ export async function loginAction(previousState: { error: boolean, message: stri
     if (result) {
         return {
             error: false,
-            message: "Ok."
+            message: "Autenticado."
         }
     }
 

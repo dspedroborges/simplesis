@@ -33,12 +33,12 @@ export async function createCompanyExpense(previousState: { message: string, err
             price,
             date
         },
-    })
+    });
 
+    revalidatePath("/");
     // returns
-    ;
     return {
-        message: "Ok.",
+        message: "Gasto criado com sucesso.",
         error: false
     }
 }
@@ -69,12 +69,12 @@ export async function updateCompanyExpense(previousState: { message: string, err
             date,
             paid
         },
-    })
+    });
 
+    revalidatePath("/");
     // returns
-    ;
     return {
-        message: "Ok.",
+        message: "Gasto atualizado com sucesso.",
         error: false
     }
 }

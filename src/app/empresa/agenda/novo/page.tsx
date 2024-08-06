@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from "next/link";
 import { Suspense } from 'react'
 import Spinner from "@/app/components/Spinner";
+import Toast from "@/app/components/Toast";
 
 function Internal() {
     const searchParams = useSearchParams();
@@ -37,10 +38,14 @@ function Internal() {
         <>
             <TopBar title="Novo agendamento" />
             {
-                formState.error ? (
-                    <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
-                ) : (
-                    <div className="text-green-600 my-4 text-center font-bold">{formState.message}</div>
+                formState.error && (
+                    <Toast content={formState.message} type="danger" />
+                )
+            }
+
+            {
+                (!formState.error && formState.message !== "") && (
+                    <Toast content={formState.message} type="success" />
                 )
             }
 

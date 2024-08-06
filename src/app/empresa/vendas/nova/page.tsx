@@ -9,6 +9,7 @@ import { useRef, useState } from "react";
 import { useFormState } from "react-dom";
 import { Suspense } from 'react'
 import Spinner from "@/app/components/Spinner";
+import Toast from "@/app/components/Toast";
 
 function Internal() {
     const [formState, action] = useFormState(createCompanySale, {
@@ -34,10 +35,14 @@ function Internal() {
         <>
             <TopBar title="Nova venda" />
             {
-                formState.error ? (
-                    <div className="text-red-600 my-4 text-center font-bold">{formState.message}</div>
-                ) : (
-                    <div className="text-green-600 my-4 text-center font-bold">{formState.message}</div>
+                formState.error && (
+                    <Toast content={formState.message} type="danger" />
+                )
+            }
+
+            {
+                (!formState.error && formState.message !== "") && (
+                    <Toast content={formState.message} type="success" />
                 )
             }
 

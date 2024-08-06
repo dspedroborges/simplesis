@@ -65,8 +65,6 @@ export async function createPayment(formData: FormData) {
         }
     }
 
-    console.log(product);
-
     const currentDate = new Date();
     const expiresAt = new Date(currentDate);
 

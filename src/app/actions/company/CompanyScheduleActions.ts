@@ -138,7 +138,7 @@ export async function createCompanySchedule(previousState: { message: string, er
     // returns
     ;
     return {
-        message: "Ok.",
+        message: "Agendamento criado com sucesso.",
         error: false
     }
 }
@@ -248,7 +248,7 @@ export async function updateCompanySchedule(previousState: { message: string, er
         // returns
         ;
     return {
-        message: "Ok.",
+        message: "Agendamento atualizado com sucesso.",
         error: false
     }
 }
