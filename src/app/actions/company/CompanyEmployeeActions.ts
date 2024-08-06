@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import prisma from "../../../../lib/prisma";
 import { getLoggedCompanyId } from "./CompanyActions";
+import { isThereBadWord, isValidBrazilianPhone } from "@/utils";
 
 export async function createCompanyEmployee(previousState: { message: string, error: boolean }, formData: FormData) {
     const gottenId = await getLoggedCompanyId();
@@ -24,6 +25,27 @@ export async function createCompanyEmployee(previousState: { message: string, er
     if (!(companyId && name && cpf && email && tel && wage && payDay && schedulerColor)) {
         return {
             message: "Preencha todos os campos corretamente.",
+            error: true
+        }
+    }
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        return {
+            message: "Formato de email inválido",
+            error: true
+        }
+    }
+
+    if (isThereBadWord(email) || isThereBadWord(name)) {
+        return {
+            message: "Palavra ofensiva detectada.",
+            error: true
+        }
+    }
+
+    if (!isValidBrazilianPhone(tel)) {
+        return {
+            message: "Formato de telefone inválido.",
             error: true
         }
     }
@@ -66,6 +88,27 @@ export async function updateCompanyEmployee(previousState: { message: string, er
         }
     }
 
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        return {
+            message: "Formato de email inválido",
+            error: true
+        }
+    }
+
+    if (isThereBadWord(email) || isThereBadWord(name)) {
+        return {
+            message: "Palavra ofensiva detectada.",
+            error: true
+        }
+    }
+
+    if (!isValidBrazilianPhone(tel)) {
+        return {
+            message: "Formato de telefone inválido.",
+            error: true
+        }
+    }
+
     await prisma.companyEmployee.update({
         where: {
             id
@@ -79,10 +122,9 @@ export async function updateCompanyEmployee(previousState: { message: string, er
             payDay,
             schedulerColor
         },
-    })
+    });
 
     // returns
-    ;
     return {
         message: "Funcionário atualizado com sucesso.",
         error: false
@@ -95,6 +137,4 @@ export async function deleteCompanyEmployee(id: number) {
             id,
         }
     });
-
-    ;
 }

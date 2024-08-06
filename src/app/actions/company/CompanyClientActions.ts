@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import prisma from "../../../../lib/prisma";
 import { getLoggedCompanyId } from "./CompanyActions";
 import { encryptAES  } from "@/crypto";
+import { isThereBadWord, isValidBrazilianPhone } from "@/utils";
 
 export async function createCompanyClient(previousState: { message: string, error: boolean }, formData: FormData) {
     const gottenId = await getLoggedCompanyId();
@@ -26,6 +27,27 @@ export async function createCompanyClient(previousState: { message: string, erro
     if (!(companyId && name && sex && birth && description && tel && email && pipelineStage)) {
         return {
             message: "Preencha todos os campos corretamente.",
+            error: true
+        }
+    }
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        return {
+            message: "Formato de email inválido",
+            error: true
+        }
+    }
+
+    if (isThereBadWord(email) || isThereBadWord(name)) {
+        return {
+            message: "Palavra ofensiva detectada.",
+            error: true
+        }
+    }
+
+    if (!isValidBrazilianPhone(tel)) {
+        return {
+            message: "Formato de telefone inválido.",
             error: true
         }
     }
@@ -118,6 +140,27 @@ export async function updateCompanyClient(previousState: { message: string, erro
     const tel = formData.get("tel") as string;
     const email = formData.get("email") as string;
     const pipelineStage = formData.get("pipelineStage") as string;
+
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
+        return {
+            message: "Formato de email inválido",
+            error: true
+        }
+    }
+
+    if (isThereBadWord(email) || isThereBadWord(name)) {
+        return {
+            message: "Palavra ofensiva detectada.",
+            error: true
+        }
+    }
+
+    if (!isValidBrazilianPhone(tel)) {
+        return {
+            message: "Formato de telefone inválido.",
+            error: true
+        }
+    }
 
     if (!(id && name && sex && birth && description && tel && email && pipelineStage)) {
         return {
