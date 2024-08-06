@@ -38,7 +38,7 @@ export default async function Page() {
                 <div className="w-full lg:w-1/5">
                     <PieWrapper
                         labels={["Conhecimento", "Interesse", "Avaliação", "Negociação", "Compra", "Renovamento"]}
-                        label='# de gênero'
+                        label='# de pipeline'
                         data={
                             [
                                 countClients === 0 || result['Conhecimento'] === 0 ? 0 : ((result['Conhecimento'] / countClients) * 100),

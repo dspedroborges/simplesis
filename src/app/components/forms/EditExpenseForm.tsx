@@ -31,23 +31,23 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="title" className="block cursor-pointer font-bold mb-2">Título:</label>
-                    <input type="text" name="title" id="title" className="border p-2 w-full" defaultValue={data?.title} />
+                    <input type="text" name="title" id="title" className="rounded-xl border p-2 w-full" defaultValue={data?.title} />
                 </div>
                 <div>
                     <label htmlFor="comment" className="block cursor-pointer font-bold mb-2">Comentário:</label>
-                    <textarea name="comment" id="comment" className="border p-2 w-full" defaultValue={data?.comment}></textarea>
+                    <textarea name="comment" id="comment" className="rounded-xl border p-2 w-full" defaultValue={data?.comment}></textarea>
                 </div>
                 <div>
                     <label htmlFor="price" className="block cursor-pointer font-bold mb-2">Preço:</label>
-                    <input type="number" name="price" id="price" className="border p-2 w-full" defaultValue={data?.price} />
+                    <input type="number" name="price" id="price" className="rounded-xl border p-2 w-full" defaultValue={data?.price} />
                 </div>
                 <div>
                     <label htmlFor="date" className="block cursor-pointer font-bold mb-2">Data:</label>
-                    <input type="date" name="date" id="date" className="border p-2 w-full" defaultValue={new Date(data?.date).toISOString().split('T')[0]} />
+                    <input type="date" name="date" id="date" className="rounded-xl border p-2 w-full" defaultValue={new Date(data?.date).toISOString().split('T')[0]} />
                 </div>
                 <div>
                     <label htmlFor="paid" className="block cursor-pointer font-bold mb-2">Pago:</label>
-                    <select name="paid" id="paid" className="border p-2 w-full" defaultValue={data?.paid}>
+                    <select name="paid" id="paid" className="rounded-xl border p-2 w-full" defaultValue={data?.paid}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>

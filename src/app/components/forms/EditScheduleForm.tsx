@@ -33,23 +33,23 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="description" className="block cursor-pointer font-bold mb-2">Descrição:</label>
-                    <textarea name="description" id="description" className="border p-2 w-full" defaultValue={data?.description}></textarea>
+                    <textarea name="description" id="description" className="rounded-xl border p-2 w-full" defaultValue={data?.description}></textarea>
                 </div>
                 <div>
                     <label htmlFor="date" className="block cursor-pointer font-bold mb-2">Data:</label>
-                    <input type="date" name="date" id="date" className="border p-2 w-full" defaultValue={new Date(data?.date).toISOString().split('T')[0]} />
+                    <input type="date" name="date" id="date" className="rounded-xl border p-2 w-full" defaultValue={new Date(data?.date).toISOString().split('T')[0]} />
                 </div>
                 <div>
                     <label htmlFor="hourStart" className="block cursor-pointer font-bold mb-2">Hora início:</label>
-                    <input type="number" name="hourStart" id="hourStart" className="border p-2 w-full" defaultValue={data?.hourStart} />
+                    <input type="number" name="hourStart" id="hourStart" className="rounded-xl border p-2 w-full" defaultValue={data?.hourStart} />
                 </div>
                 <div>
                     <label htmlFor="hourEnd" className="block cursor-pointer font-bold mb-2">Hora fim:</label>
-                    <input type="number" name="hourEnd" id="hourEnd" className="border p-2 w-full" defaultValue={data?.hourEnd} />
+                    <input type="number" name="hourEnd" id="hourEnd" className="rounded-xl border p-2 w-full" defaultValue={data?.hourEnd} />
                 </div>
                 <div>
                     <label htmlFor="confirmed" className="block cursor-pointer font-bold mb-2">Confirmado:</label>
-                    <select name="confirmed" id="confirmed" className="border p-2 w-full" defaultValue={data?.confirmed}>
+                    <select name="confirmed" id="confirmed" className="rounded-xl border p-2 w-full" defaultValue={data?.confirmed}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
@@ -57,7 +57,7 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 </div>
                 <div>
                     <label htmlFor="done" className="block cursor-pointer font-bold mb-2">Realizado:</label>
-                    <select name="done" id="done" className="border p-2 w-full" defaultValue={data?.done}>
+                    <select name="done" id="done" className="rounded-xl border p-2 w-full" defaultValue={data?.done}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
@@ -65,7 +65,7 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 </div>
                 <div>
                     <label htmlFor="paid" className="block cursor-pointer font-bold mb-2">Pago:</label>
-                    <select name="paid" id="paid" className="border p-2 w-full" defaultValue={data?.paid} onChange={(e) => setIsPaid(Boolean(e.target.value))}>
+                    <select name="paid" id="paid" className="rounded-xl border p-2 w-full" defaultValue={data?.paid} onChange={(e) => setIsPaid(Boolean(e.target.value))}>
                         <option value="">Selecione uma opção</option>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
@@ -78,19 +78,19 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                             <h2 className="text-xl my-4">Registro de venda</h2>
                             <div className="py-2">
                                 <label htmlFor="title" className="block cursor-pointer font-bold mb-2">Título:</label>
-                                <input type="text" name="title" id="title" className="border p-2 w-full" />
+                                <input type="text" name="title" id="title" className="rounded-xl border p-2 w-full" />
                             </div>
                             <div className="py-2">
                                 <label htmlFor="comment" className="block cursor-pointer font-bold mb-2">Comentário:</label>
-                                <textarea name="comment" id="comment" className="border p-2 w-full"></textarea>
+                                <textarea name="comment" id="comment" className="rounded-xl border p-2 w-full"></textarea>
                             </div>
                             <div className="py-2">
                                 <label htmlFor="price" className="block cursor-pointer font-bold mb-2">Preço:</label>
-                                <input type="number" name="price" id="price" className="border p-2 w-full" />
+                                <input type="number" name="price" id="price" className="rounded-xl border p-2 w-full" />
                             </div>
                             <div className="py-2">
                                 <label htmlFor="paymentMode" className="block cursor-pointer font-bold mb-2">Modo de pagamento:</label>
-                                <select name="paymentMode" id="price" className="border p-2 w-full" onChange={(e) => setPaymentMode(e.target.value)} required>
+                                <select name="paymentMode" id="price" className="rounded-xl border p-2 w-full" onChange={(e) => setPaymentMode(e.target.value)} required>
                                     <option value="">Selecione uma opção</option>
                                     <option value="Crédito">Crédito</option>
                                     <option value="Pix" defaultChecked>Pix</option>
@@ -101,10 +101,10 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                                 paymentMode === "Crédito" ? (
                                     <div>
                                         <label htmlFor="installments" className="block cursor-pointer font-bold mb-2">Parcelas:</label>
-                                        <input type="number" name="installments" id="installments" className="border p-2 w-full" required />
+                                        <input type="number" name="installments" id="installments" className="rounded-xl border p-2 w-full" required />
                                     </div>
                                 ) : (
-                                    <input type="hidden" name="installments" id="installments" value={1} className="border p-2 w-full" />
+                                    <input type="hidden" name="installments" id="installments" value={1} className="rounded-xl border p-2 w-full" />
                                 )
                             }
                         </div>

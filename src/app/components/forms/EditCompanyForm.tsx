@@ -31,31 +31,31 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="username" className="block cursor-pointer font-bold mb-2">Nome de usuário:</label>
-                    <input type="text" name="username" id="username" className="border p-2 w-full" defaultValue={data?.username} />
+                    <input type="text" name="username" id="username" className="rounded-xl border p-2 w-full" defaultValue={data?.username} />
                 </div>
                 <div>
                     <label htmlFor="companyName" className="block cursor-pointer font-bold mb-2">Nome da empresa:</label>
-                    <input type="text" name="companyName" id="companyName" className="border p-2 w-full" defaultValue={data?.companyName} />
+                    <input type="text" name="companyName" id="companyName" className="rounded-xl border p-2 w-full" defaultValue={data?.companyName} />
                 </div>
                 <div>
                     <label htmlFor="email" className="block cursor-pointer font-bold mb-2">Email:</label>
-                    <input type="email" name="email" id="email" className="border p-2 w-full" defaultValue={data?.email} />
+                    <input type="email" name="email" id="email" className="rounded-xl border p-2 w-full" defaultValue={data?.email} />
                 </div>
                 <div>
                     <label htmlFor="tel" className="block cursor-pointer font-bold mb-2">Telefone:</label>
-                    <input type="text" name="tel" id="tel" className="border p-2 w-full" defaultValue={data?.tel} />
+                    <input type="text" name="tel" id="tel" className="rounded-xl border p-2 w-full" defaultValue={data?.tel} />
                 </div>
                 <div>
                     <label htmlFor="currentPassword" className="block cursor-pointer font-bold mb-2">Senha atual:</label>
-                    <input type="password" name="currentPassword" id="currentPassword" className="border p-2 w-full" />
+                    <input type="password" name="currentPassword" id="currentPassword" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="newPassword" className="block cursor-pointer font-bold mb-2">Nova senha:</label>
-                    <input type="password" name="newPassword" id="newPassword" className="border p-2 w-full" />
+                    <input type="password" name="newPassword" id="newPassword" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="newPasswordConfirmation" className="block cursor-pointer font-bold mb-2">Confirmação de nova senha:</label>
-                    <input type="password" name="newPasswordConfirmation" id="newPasswordConfirmation" className="border p-2 w-full" />
+                    <input type="password" name="newPasswordConfirmation" id="newPasswordConfirmation" className="rounded-xl border p-2 w-full" />
                 </div>
                 <SubmitButton name="Atualizar" loadingName="Atualizando..." />
             </form>

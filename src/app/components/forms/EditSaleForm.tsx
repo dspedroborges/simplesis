@@ -31,19 +31,19 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="title" className="block cursor-pointer font-bold mb-2">Título:</label>
-                    <input type="text" name="title" id="title" className="border p-2 w-full" defaultValue={data?.title} />
+                    <input type="text" name="title" id="title" className="rounded-xl border p-2 w-full" defaultValue={data?.title} />
                 </div>
                 <div>
                     <label htmlFor="comment" className="block cursor-pointer font-bold mb-2">Comentário:</label>
-                    <textarea name="comment" id="comment" className="border p-2 w-full" defaultValue={data?.comment}></textarea>
+                    <textarea name="comment" id="comment" className="rounded-xl border p-2 w-full" defaultValue={data?.comment}></textarea>
                 </div>
                 <div>
                     <label htmlFor="price" className="block cursor-pointer font-bold mb-2">Preço:</label>
-                    <input type="number" name="price" id="price" className="border p-2 w-full" defaultValue={data?.price} />
+                    <input type="number" name="price" id="price" className="rounded-xl border p-2 w-full" defaultValue={data?.price} />
                 </div>
                 <div>
                     <label htmlFor="paymentMode" className="block cursor-pointer font-bold mb-2">Modo de pagamento:</label>
-                    <select name="paymentMode" id="paymentMode" className="border p-2 w-full" defaultValue={data?.paymentMode} onChange={(e) => setPaymentMode(e.target.value)} required>
+                    <select name="paymentMode" id="paymentMode" className="rounded-xl border p-2 w-full" defaultValue={data?.paymentMode} onChange={(e) => setPaymentMode(e.target.value)} required>
                         <option value="">Selecione uma opção</option>
                         <option value="Crédito">Crédito</option>
                         <option value="Pix">Pix</option>
@@ -54,10 +54,10 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                     paymentMode === "Crédito" ? (
                         <div>
                             <label htmlFor="installments" className="block cursor-pointer font-bold mb-2">Parcelas:</label>
-                            <input type="number" name="installments" id="installments" defaultValue={data?.installments} className="border p-2 w-full" required />
+                            <input type="number" name="installments" id="installments" defaultValue={data?.installments} className="rounded-xl border p-2 w-full" required />
                         </div>
                     ) : (
-                        <input type="hidden" name="installments" id="installments" value={1} className="border p-2 w-full" />
+                        <input type="hidden" name="installments" id="installments" value={1} className="rounded-xl border p-2 w-full" />
                     )
                 }
                 <SubmitButton name="Atualizar" loadingName="Atualizando..." />

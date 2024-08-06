@@ -40,27 +40,27 @@ export default function Page() {
 
                 <div>
                     <label htmlFor="username" className="block cursor-pointer font-bold mb-2">Nome de usuário:</label>
-                    <input type="text" name="username" id="username" className="border p-2 w-full" />
+                    <input type="text" name="username" id="username" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="password" className="block cursor-pointer font-bold mb-2">Senha:</label>
-                    <input type="password" name="password" id="password" className="border p-2 w-full" />
+                    <input type="password" name="password" id="password" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="passwordConfirmation" className="block cursor-pointer font-bold mb-2">Confirmação de senha:</label>
-                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" className="border p-2 w-full" />
+                    <input type="password" name="passwordConfirmation" id="passwordConfirmation" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="companyName" className="block cursor-pointer font-bold mb-2">Nome da empresa:</label>
-                    <input type="text" name="companyName" id="companyName" className="border p-2 w-full" />
+                    <input type="text" name="companyName" id="companyName" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="email" className="block cursor-pointer font-bold mb-2">Email:</label>
-                    <input type="email" name="email" id="email" className="border p-2 w-full" />
+                    <input type="email" name="email" id="email" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="tel" className="block cursor-pointer font-bold mb-2">Telefone:</label>
-                    <input type="text" name="tel" id="tel" className="border p-2 w-full" />
+                    <input type="text" name="tel" id="tel" className="rounded-xl border p-2 w-full" />
                 </div>
                 <SubmitButton name="Criar conta" loadingName="Criando conta..." />
             </form>

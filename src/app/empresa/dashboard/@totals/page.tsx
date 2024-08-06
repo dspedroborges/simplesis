@@ -20,7 +20,11 @@ export default async function Page() {
         }
     });
 
-    const countClients = await prisma.companyClient.count();
+    const countClients = await prisma.companyClient.count({
+        where: {
+            companyId: company?.id
+        }
+    });
 
     const countBuy = await prisma.companyClient.count({
         where: {

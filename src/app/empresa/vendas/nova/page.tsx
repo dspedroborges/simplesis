@@ -57,19 +57,19 @@ function Internal() {
                 <input type="hidden" name="offerId" value={Array.isArray(offer) ? offer[0] : ""} />
                 <div>
                     <label htmlFor="title" className="block cursor-pointer font-bold mb-2">Título:</label>
-                    <input type="text" name="title" id="title" className="border p-2 w-full" />
+                    <input type="text" name="title" id="title" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="comment" className="block cursor-pointer font-bold mb-2">Comentário:</label>
-                    <textarea name="comment" id="comment" className="border p-2 w-full"></textarea>
+                    <textarea name="comment" id="comment" className="rounded-xl border p-2 w-full"></textarea>
                 </div>
                 <div>
                     <label htmlFor="price" className="block cursor-pointer font-bold mb-2">Preço:</label>
-                    <input type="number" name="price" id="price" className="border p-2 w-full" />
+                    <input type="number" name="price" id="price" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="paymentMode" className="block cursor-pointer font-bold mb-2">Modo de pagamento:</label>
-                    <select name="paymentMode" id="price" className="border p-2 w-full" onChange={(e) => setPaymentMode(e.target.value)} required>
+                    <select name="paymentMode" id="price" className="rounded-xl border p-2 w-full" onChange={(e) => setPaymentMode(e.target.value)} required>
                         <option value="">Selecione uma opção</option>
                         <option value="Crédito">Crédito</option>
                         <option value="Pix">Pix</option>
@@ -80,10 +80,10 @@ function Internal() {
                     paymentMode === "Crédito" ? (
                         <div>
                             <label htmlFor="installments" className="block cursor-pointer font-bold mb-2">Parcelas:</label>
-                            <input type="number" name="installments" id="installments" className="border p-2 w-full" required />
+                            <input type="number" name="installments" id="installments" className="rounded-xl border p-2 w-full" required />
                         </div>
                     ) : (
-                        <input type="hidden" name="installments" id="installments" value={1} className="border p-2 w-full" />
+                        <input type="hidden" name="installments" id="installments" value={1} className="rounded-xl border p-2 w-full" />
                     )
                 }
                 <SubmitButton name="Registrar venda" loadingName="Registrando..." />

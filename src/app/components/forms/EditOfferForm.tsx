@@ -32,11 +32,11 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="name" className="block cursor-pointer font-bold mb-2">Nome:</label>
-                    <input type="text" name="name" id="name" className="border p-2 w-full" defaultValue={data?.name} />
+                    <input type="text" name="name" id="name" className="rounded-xl border p-2 w-full" defaultValue={data?.name} />
                 </div>
                 <div>
                     <label htmlFor="type" className="block cursor-pointer font-bold mb-2">Tipo:</label>
-                    <select name="type" id="type" className="border p-2 w-full" onChange={(e) => setType(e.target.value)} defaultValue={data?.type}>
+                    <select name="type" id="type" className="rounded-xl border p-2 w-full" onChange={(e) => setType(e.target.value)} defaultValue={data?.type}>
                         <option value="">Selecione um tipo</option>
                         <option value="PRODUCT">Produto</option>
                         <option value="SERVICE">Serviço</option>
@@ -46,17 +46,17 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                     type === "PRODUCT" && (
                         <div>
                             <label htmlFor="amountAvailable" className="block cursor-pointer font-bold mb-2">Quantidade em estoque:</label>
-                            <input type="number" name="amountAvailable" id="amountAvailable" className="border p-2 w-full" defaultValue={data?.amountAvailable} />
+                            <input type="number" name="amountAvailable" id="amountAvailable" className="rounded-xl border p-2 w-full" defaultValue={data?.amountAvailable} />
                         </div>
                     )
                 }
                 <div>
                     <label htmlFor="description" className="block cursor-pointer font-bold mb-2">Descrição:</label>
-                    <textarea name="description" id="description" className="border p-2 w-full" defaultValue={data?.description}></textarea>
+                    <textarea name="description" id="description" className="rounded-xl border p-2 w-full" defaultValue={data?.description}></textarea>
                 </div>
                 <div>
                     <label htmlFor="price" className="block cursor-pointer font-bold mb-2">Preço:</label>
-                    <input type="number" name="price" id="price" className="border p-2 w-full" defaultValue={data?.price} />
+                    <input type="number" name="price" id="price" className="rounded-xl border p-2 w-full" defaultValue={data?.price} />
                 </div>
                 <SubmitButton name="Atualizar" loadingName="Atualizando..." />
             </form>

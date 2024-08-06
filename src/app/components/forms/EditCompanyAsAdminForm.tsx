@@ -31,23 +31,23 @@ export default function EditCompanyAsAdminForm({ data }: { data: Record<string, 
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="username" className="block cursor-pointer font-bold mb-2">Nome de usuário:</label>
-                    <input type="text" name="username" id="username" className="border p-2 w-full" defaultValue={data?.username} />
+                    <input type="text" name="username" id="username" className="rounded-xl border p-2 w-full" defaultValue={data?.username} />
                 </div>
                 <div>
                     <label htmlFor="companyName" className="block cursor-pointer font-bold mb-2">Nome da empresa:</label>
-                    <input type="text" name="companyName" id="companyName" className="border p-2 w-full" defaultValue={data?.companyName} />
+                    <input type="text" name="companyName" id="companyName" className="rounded-xl border p-2 w-full" defaultValue={data?.companyName} />
                 </div>
                 <div>
                     <label htmlFor="email" className="block cursor-pointer font-bold mb-2">Email:</label>
-                    <input type="email" name="email" id="email" className="border p-2 w-full" defaultValue={data?.email} />
+                    <input type="email" name="email" id="email" className="rounded-xl border p-2 w-full" defaultValue={data?.email} />
                 </div>
                 <div>
                     <label htmlFor="tel" className="block cursor-pointer font-bold mb-2">Telefone:</label>
-                    <input type="text" name="tel" id="tel" className="border p-2 w-full" defaultValue={data?.tel} />
+                    <input type="text" name="tel" id="tel" className="rounded-xl border p-2 w-full" defaultValue={data?.tel} />
                 </div>
                 <div>
                     <label htmlFor="plan" className="block cursor-pointer font-bold mb-2">Plano:</label>
-                    <select name="plan" id="plan" className="border p-2 w-full" defaultValue={data?.plan}>
+                    <select name="plan" id="plan" className="rounded-xl border p-2 w-full" defaultValue={data?.plan}>
                         <option value="">Selecione um plano</option>
                         <option value="NO_PLAN">Sem plano</option>
                         <option value="MONTHLY">Mensal</option>

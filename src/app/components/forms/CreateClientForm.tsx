@@ -33,11 +33,11 @@ export default function CreateClientForm({ companyClientRecord }: { companyClien
 
                 <div>
                     <label htmlFor="name" className="block cursor-pointer font-bold mb-2">Nome:</label>
-                    <input type="text" name="name" id="name" className="border p-2 w-full" />
+                    <input type="text" name="name" id="name" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="sex" className="block cursor-pointer font-bold mb-2">Sexo:</label>
-                    <select name="sex" id="sex" className="p-2 border w-full">
+                    <select name="sex" id="sex" className="p-2 border w-full rounded-xl">
                         <option value="">Selecione uma opção</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>
@@ -45,23 +45,23 @@ export default function CreateClientForm({ companyClientRecord }: { companyClien
                 </div>
                 <div>
                     <label htmlFor="birth" className="block cursor-pointer font-bold mb-2">Data de nascimento:</label>
-                    <input type="date" name="birth" id="birth" className="border p-2 w-full" />
+                    <input type="date" name="birth" id="birth" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="description" className="block cursor-pointer font-bold mb-2">Descrição:</label>
-                    <textarea name="description" id="description" className="border p-2 w-full min-h-[500px]" defaultValue={companyClientRecord}></textarea>
+                    <textarea name="description" id="description" className="border p-2 w-full min-h-[500px] rounded-xl" defaultValue={companyClientRecord}></textarea>
                 </div>
                 <div>
                     <label htmlFor="tel" className="block cursor-pointer font-bold mb-2">Telefone:</label>
-                    <input type="text" name="tel" id="tel" className="border p-2 w-full" />
+                    <input type="text" name="tel" id="tel" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="email" className="block cursor-pointer font-bold mb-2">Email:</label>
-                    <input type="email" name="email" id="email" className="border p-2 w-full" />
+                    <input type="email" name="email" id="email" className="rounded-xl border p-2 w-full" />
                 </div>
                 <div>
                     <label htmlFor="pipelineStage" className="block cursor-pointer font-bold mb-2">Pipeline:</label>
-                    <select name="pipelineStage" id="pipelineStage" className="p-2 border w-full">
+                    <select name="pipelineStage" id="pipelineStage" className="p-2 border w-full rounded-xl">
                         <option value="">Selecione uma opção</option>
                         <option value="Conhecimento">Conhecimento</option>
                         <option value="Interesse">Interesse</option>

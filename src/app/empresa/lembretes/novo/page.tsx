@@ -33,11 +33,11 @@ export default function Page() {
                 
                 <div>
                     <label htmlFor="description" className="block cursor-pointer font-bold mb-2">Descrição:</label>
-                    <textarea name="description" id="description" className="border p-2 w-full"></textarea>
+                    <textarea name="description" id="description" className="rounded-xl border p-2 w-full"></textarea>
                 </div>
                 <div>
                     <label htmlFor="date" className="block cursor-pointer font-bold mb-2">Data:</label>
-                    <input type="date" name="date" id="date" className="border p-2 w-full" defaultValue={new Date().toISOString().split("T")[0]} />
+                    <input type="date" name="date" id="date" className="rounded-xl border p-2 w-full" defaultValue={new Date().toISOString().split("T")[0]} />
                 </div>
                 <SubmitButton name="Criar lembrete" loadingName="Criando..." />
             </form>

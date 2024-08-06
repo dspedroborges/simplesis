@@ -31,11 +31,11 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="name" className="block cursor-pointer font-bold mb-2">Nome:</label>
-                    <input type="text" name="name" id="name" className="border p-2 w-full" defaultValue={data?.name} />
+                    <input type="text" name="name" id="name" className="rounded-xl border p-2 w-full" defaultValue={data?.name} />
                 </div>
                 <div>
                     <label htmlFor="sex" className="block cursor-pointer font-bold mb-2">Comentário:</label>
-                    <select name="sex" id="sex" className="p-2 border w-full" defaultValue={data?.sex}>
+                    <select name="sex" id="sex" className="p-2 border w-full rounded-xl" defaultValue={data?.sex}>
                         <option value="">Selecione uma opção</option>
                         <option value="M">Masculino</option>
                         <option value="F">Feminino</option>
@@ -43,23 +43,23 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 </div>
                 <div>
                     <label htmlFor="birth" className="block cursor-pointer font-bold mb-2">Data de nascimento:</label>
-                    <input type="date" name="birth" id="birth" className="border p-2 w-full" defaultValue={new Date(data?.birth).toISOString().split('T')[0]} />
+                    <input type="date" name="birth" id="birth" className="rounded-xl border p-2 w-full" defaultValue={new Date(data?.birth).toISOString().split('T')[0]} />
                 </div>
                 <div>
                     <label htmlFor="description" className="block cursor-pointer font-bold mb-2">Descrição:</label>
-                    <textarea name="description" id="description" className="border p-2 w-full" defaultValue={data?.description}></textarea>
+                    <textarea name="description" id="description" className="rounded-xl border p-2 w-full" defaultValue={data?.description}></textarea>
                 </div>
                 <div>
                     <label htmlFor="tel" className="block cursor-pointer font-bold mb-2">Telefone:</label>
-                    <input type="text" name="tel" id="tel" className="border p-2 w-full" defaultValue={data?.tel} />
+                    <input type="text" name="tel" id="tel" className="rounded-xl border p-2 w-full" defaultValue={data?.tel} />
                 </div>
                 <div>
                     <label htmlFor="email" className="block cursor-pointer font-bold mb-2">Email:</label>
-                    <input type="email" name="email" id="email" className="border p-2 w-full" defaultValue={data?.email} />
+                    <input type="email" name="email" id="email" className="rounded-xl border p-2 w-full" defaultValue={data?.email} />
                 </div>
                 <div>
                     <label htmlFor="pipelineStage" className="block cursor-pointer font-bold mb-2">Pipeline:</label>
-                    <select name="pipelineStage" id="pipelineStage" className="p-2 border w-full" defaultValue={data?.pipelineStage}>
+                    <select name="pipelineStage" id="pipelineStage" className="p-2 border w-full rounded-xl" defaultValue={data?.pipelineStage}>
                         <option value="">Selecione uma opção</option>
                         <option value="Conhecimento">Conhecimento</option>
                         <option value="Interesse">Interesse</option>

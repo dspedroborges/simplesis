@@ -13,7 +13,7 @@ export default function PrevForm({ clients, employees, offers, redirect }: { cli
             <div className="my-4">
 
                 <label htmlFor="client" className="block cursor-pointer font-bold mb-2">Cliente:</label>
-                <select name="client" id="client" className="border p-2 w-full" onChange={(e) => setSelectedClient(e.target.value)}>
+                <select name="client" id="client" className="rounded-xl border p-2 w-full" onChange={(e) => setSelectedClient(e.target.value)}>
                     <option value="">Selecione uma opção</option>
                     {
                         clients.map((client, i) => {
@@ -28,7 +28,7 @@ export default function PrevForm({ clients, employees, offers, redirect }: { cli
             </div>
             <div className="my-4">
                 <label htmlFor="employee" className="block cursor-pointer font-bold mb-2">Funcionário:</label>
-                <select name="employee" id="employee" className="border p-2 w-full" onChange={(e) => setSelectedEmployee(e.target.value)}>
+                <select name="employee" id="employee" className="rounded-xl border p-2 w-full" onChange={(e) => setSelectedEmployee(e.target.value)}>
                     <option value="">Selecione uma opção</option>
                     {
                         employees.map((employee, i) => {
@@ -43,7 +43,7 @@ export default function PrevForm({ clients, employees, offers, redirect }: { cli
             </div>
             <div className="my-4">
                 <label htmlFor="offer" className="block cursor-pointer font-bold mb-2">Produto/serviço:</label>
-                <select name="offer" id="offer" className="border p-2 w-full" onChange={(e) => setSelectedOffer(e.target.value)}>
+                <select name="offer" id="offer" className="rounded-xl border p-2 w-full" onChange={(e) => setSelectedOffer(e.target.value)}>
                     <option value="">Selecione uma opção</option>
                     {
                         offers.map((offer, i) => {

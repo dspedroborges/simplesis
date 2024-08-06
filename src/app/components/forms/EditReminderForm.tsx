@@ -31,15 +31,15 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 <input type="hidden" name="id" value={data?.id} />
                 <div>
                     <label htmlFor="description" className="block cursor-pointer font-bold mb-2">Descrição:</label>
-                    <textarea name="description" id="description" className="border p-2 w-full" defaultValue={data?.description}></textarea>
+                    <textarea name="description" id="description" className="rounded-xl border p-2 w-full" defaultValue={data?.description}></textarea>
                 </div>
                 <div>
                     <label htmlFor="date" className="block cursor-pointer font-bold mb-2">Data:</label>
-                    <input type="date" name="date" id="date" className="border p-2 w-full" defaultValue={new Date(data?.date).toISOString().split('T')[0]}  />
+                    <input type="date" name="date" id="date" className="rounded-xl border p-2 w-full" defaultValue={new Date(data?.date).toISOString().split('T')[0]}  />
                 </div>
                 <div>
                     <label htmlFor="done" className="block cursor-pointer font-bold mb-2">Realizado:</label>
-                    <select name="done" id="done" className="border p-2 w-full" defaultValue={data?.done}>
+                    <select name="done" id="done" className="rounded-xl border p-2 w-full" defaultValue={data?.done}>
                         <option value="true">Sim</option>
                         <option value="false">Não</option>
                     </select>

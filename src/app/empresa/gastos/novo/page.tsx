@@ -33,19 +33,19 @@ export default function Page() {
                 
                 <div>
                     <label htmlFor="title" className="block cursor-pointer font-bold mb-2">Título:</label>
-                    <input type="text" name="title" id="title" className="border p-2 w-full"/>
+                    <input type="text" name="title" id="title" className="rounded-xl border p-2 w-full"/>
                 </div>
                 <div>
                     <label htmlFor="comment" className="block cursor-pointer font-bold mb-2">Comentário:</label>
-                    <textarea name="comment" id="comment" className="border p-2 w-full"></textarea>
+                    <textarea name="comment" id="comment" className="rounded-xl border p-2 w-full"></textarea>
                 </div>
                 <div>
                     <label htmlFor="price" className="block cursor-pointer font-bold mb-2">Preço:</label>
-                    <input type="number" name="price" id="price" className="border p-2 w-full"/>
+                    <input type="number" name="price" id="price" className="rounded-xl border p-2 w-full"/>
                 </div>
                 <div>
                     <label htmlFor="date" className="block cursor-pointer font-bold mb-2">Data:</label>
-                    <input type="date" name="date" id="date" className="border p-2 w-full"/>
+                    <input type="date" name="date" id="date" className="rounded-xl border p-2 w-full"/>
                 </div>
                 <SubmitButton name="Registrar gasto" loadingName="Registrando..." />
             </form>
