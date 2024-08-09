@@ -10,7 +10,7 @@ export default function PopularPricing({ title, description, price, link, featur
                     <div className="absolute inset-x-0 -top-3 flex justify-center">
                         <span className="flex h-6 items-center justify-center rounded-full bg-blue-500 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white">
                             {
-                                soon ? "em breve" : "mais popular"
+                                soon ? "em breve" : "recomendado"
                             }
                         </span>
                     </div>

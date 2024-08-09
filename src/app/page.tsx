@@ -58,22 +58,22 @@ const features = [
 
 const monthly = {
     title: 'Mensal',
-    description: 'Plano acessível',
+    description: '',
     features: [
 
     ],
-    price: "R$29,99",
+    price: "R$39,99",
     link: '/registro?plan=monthly',
-    previousPrice: 'R$18,99',
+    previousPrice: 'R$24,99',
     image: '/img1.jpg'
 }
 
 const quaterly = {
     title: 'Trimestral',
-    description: '11% de desconto',
+    description: '',
     features: [
     ],
-    price: "R$79,99",
+    price: "R$180,00",
     link: '/registro?plan=quaterly',
     previousPrice: 'R$999',
     image: '/img2.jpg'
@@ -81,11 +81,11 @@ const quaterly = {
 
 const semiannual = {
     title: 'Semestral',
-    description: '5% de desconto',
+    description: '',
     features: [
 
     ],
-    price: "R$169,99",
+    price: "R$239,99",
     link: '/registro?plan=semiannual',
     previousPrice: 'R$999',
     image: '/img3.jpg',
@@ -135,14 +135,14 @@ function Internal() {
                         </h2>
 
                         <div className="mb-6 gap-x-6 gap-y-12 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 lg:gap-x-8 grid">
-                            <PopularPricing
+                            <NormalPricing
                                 time={"mês"}
                                 title={monthly.title}
                                 description={monthly.description}
                                 price={monthly.price}
                                 link={monthly.link}
                                 features={monthly.features}
-                                soon={false}
+
                             />
                             <NormalPricing
                                 time={"trimestre"}
@@ -152,13 +152,14 @@ function Internal() {
                                 link={quaterly.link}
                                 features={quaterly.features}
                             />
-                            <NormalPricing
+                            <PopularPricing
                                 time={"semestre"}
                                 title={semiannual.title}
                                 description={semiannual.description}
                                 price={semiannual.price}
                                 link={semiannual.link}
                                 features={semiannual.features}
+                                soon={false}
                             />
                         </div>
                     </div>
@@ -218,8 +219,8 @@ function Internal() {
 
 export default function Home() {
     return (
-        <Suspense fallback={<Spinner/>}>
-            <Internal/>
+        <Suspense fallback={<Spinner />}>
+            <Internal />
         </Suspense>
     )
 }

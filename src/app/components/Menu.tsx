@@ -26,7 +26,7 @@ export default function Menu({ loggedUser }: { loggedUser?: Record<string, strin
             </Link>
             {/* logo - end */}
             {/* nav - start */}
-            <nav className={`${showMenu ? "flex flex-col z-30 fixed top-0 left-0 h-screen w-full bg-black items-center justify-center" : "hidden"} lg:flex gap-12`}>
+            <nav className={`${showMenu ? "flex flex-col z-30 fixed top-0 left-0 h-screen w-full bg-black items-center justify-center" : "hidden"} lg:flex lg:flex-row lg:justify-between lg:items-center w-1/2 h-full gap-12`}>
                 <BsX className="lg:hidden text-white absolute top-2 right-2 text-4xl cursor-pointer hover:scale-105 hover:rotate-180 transition-all" onClick={() => setShowMenu(false)} />
                 <Link onClick={() => setShowMenu(false)} href="/" className={`text-lg font-semibold ${(pathname == '/' || pathname.search("afiliado") !== -1) ? "text-blue-100" : "text-gray-600 hover:text-blue-200 transition duration-100"}`}>
                     Home
@@ -38,28 +38,35 @@ export default function Menu({ loggedUser }: { loggedUser?: Record<string, strin
                 >
                     Sobre
                 </Link>
+                {
+                    loggedUser ? (
+                        <Link
+                            onClick={() => setShowMenu(false)}
+                            href={loggedUser.role === "COMPANY" ? "/empresa" : "/admin"}
+                            className="rounded-lg bg-gray-800 p-2 text-center text-sm font-semibold text-white outline-none transition duration-100 hover:bg-white hover:text-blue-800 focus-visible:ring md:text-base lg:inline-block"
+                        >
+                            <BsPerson className="text-2xl inline" />
+                        </Link>
+                    ) : (
+                        <Link
+                            onClick={() => setShowMenu(false)}
+                            href={"/login"}
+                            className="rounded-lg bg-blue-50 px-4 py-3 text-center text-sm font-semibold text-gray-950 outline-none ring-yellow-300 transition duration-100 hover:bg-blue-100 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block"
+                        >
+                            <BsPerson className="text-2xl inline mr-2" />
+                            <span>Login</span>
+                        </Link>
+                    )
+                }
             </nav>
             {/* nav - end */}
             {/* buttons - start */}
             {
-                loggedUser ? (
+                loggedUser && (
                     <>
-                        <Link
-                            href={loggedUser.role === "COMPANY" ? "/empresa" : "/admin"}
-                            className="fixed bottom-2 left-2 lg:relative rounded-lg bg-gray-800 z-40 lg:z-auto p-2 text-center text-sm font-semibold text-white outline-none transition duration-100 hover:bg-white hover:text-blue-800 focus-visible:ring md:text-base lg:inline-block mr-2"
-                        >
-                            <BsPerson className="text-2xl inline" />
-                        </Link>
-                        <Logout/>
+
+                        <Logout />
                     </>
-                ) : (
-                    <Link
-                        href={"/login"}
-                        className="fixed bottom-2 left-2 lg:relative rounded-lg bg-blue-50 px-4 z-40 lg:z-auto py-3 text-center text-sm font-semibold text-gray-950 outline-none ring-yellow-300 transition duration-100 hover:bg-blue-100 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block mr-2"
-                    >
-                        <BsPerson className="text-2xl inline mr-2" />
-                        <span className="hidden lg:inline">Login</span>
-                    </Link>
                 )
             }
             <button

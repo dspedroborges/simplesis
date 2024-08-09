@@ -68,7 +68,7 @@ export default function Page() {
                 />
               </div>
               <button className="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base">
-                Log in
+                Entrar
               </button>
               <Link href="/esqueci-minha-senha" className="my-4 text-center hover:underline text-blue-600">Esqueci minha senha</Link>
             </div>

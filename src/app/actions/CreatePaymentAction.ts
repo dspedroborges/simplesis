@@ -17,9 +17,9 @@ const arrayToNumber = (array: string[]) => {
 }
 
 const priceByProductName: Record<string, number> = {
-    "Mensal": 29.99,
-    "Trimestral": 79.99,
-    "Semestral": 169.99
+    "Mensal": 39.99,
+    "Trimestral": 180.00,
+    "Semestral": 239.99
 }
 
 const dbName: Record<string, string> = {
@@ -29,9 +29,9 @@ const dbName: Record<string, string> = {
 }
 
 const priceInCentsByProductName: Record<string, number> = {
-    "Mensal": 29.99 * 100,
-    "Trimestral": 79.99 * 100,
-    "Semestral": 169.99 * 100
+    "Mensal": priceByProductName["Mensal"] * 100,
+    "Trimestral": priceByProductName["Trimestral"] * 100,
+    "Semestral": priceByProductName["Semestral"] * 100
 }
 
 const parseProductToStripe = (productName: string, amount: number) => {

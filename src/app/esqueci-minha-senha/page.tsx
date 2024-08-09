@@ -18,7 +18,7 @@ export default function Page() {
     }
 
     return (
-        <div className="my-8">
+        <div className="my-8 p-4">
             {
                 formState.error ? (
                     <div className="text-red-600 my-4 text-center">{formState.message}</div>
