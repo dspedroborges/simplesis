@@ -8,6 +8,7 @@ export const createNumbersList = (start: number, end: number) => {
     let list = [];
     for (let i = start; i <= end; i++) {
         list.push(i);
+        list.push(i + 0.5);
     }
 
     return list;
@@ -23,6 +24,20 @@ export const isThereHourStart = (hour: number, schedules: Record<string, any>[])
     return false;
 }
 
+export const formatHour = (hour: number) => {
+    if (Number.isInteger(hour)) {
+        if (hour >= 10) {
+            return `${hour}:00`;
+        }
+        return `0${hour}:00`;
+    }
+
+    if (hour >= 10) {
+        return `${Math.floor(hour)}:30`;
+    }
+    return `0${Math.floor(hour)}:30`;
+}
+
 export const isThisHourBusy = (hour: number, schedules: Record<string, any>[]) => {
     for (let i = 0; i < schedules.length; i++) {
         if (hour >= schedules[i].hourStart && hour <= schedules[i].hourEnd) {
@@ -34,7 +49,7 @@ export const isThisHourBusy = (hour: number, schedules: Record<string, any>[]) =
 }
 
 export default memo(function DayScheduler({ header, schedules }: { header: string[], schedules: Record<string, any>[] }) {
-    const hours = createNumbersList(8, 21);
+    const hours = createNumbersList(6, 22);
 
     return (
         <>
@@ -50,7 +65,7 @@ export default memo(function DayScheduler({ header, schedules }: { header: strin
                     <div style={{ width: `${100 / header.length}%` }}>
                         {
                             hours.map((hour, i) => {
-                                return <div key={i} className="text-[8px] lg:text-base w-full h-[35px] bg-gray-700 hover:bg-gray-800 text-white border-b border-white flex items-center justify-center last:rounded-b-xl">{hour}</div>
+                                return <div key={i} className="text-[8px] lg:text-base w-full h-[35px] bg-gray-700 hover:bg-gray-800 text-white border-b border-white flex items-center justify-center last:rounded-b-xl">{formatHour(hour)}</div>
                             })
                         }
                     </div>

@@ -3,6 +3,7 @@ import prisma from "../../../../../../lib/prisma";
 import WeekScheduler from "@/app/components/WeekScheduler";
 import SchedulerOptions from "@/app/components/SchedulerOptions";
 import TopBar from "@/app/components/TopBar";
+import { endOfTodayUTC, startOfTodayUTC } from "@/utils";
 
 function getNextSixDaysFromDate(inputDate: string) {
     const startDate = new Date(inputDate);
@@ -35,7 +36,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         return prisma.companySchedule.findMany({
             where: {
                 companyId: company?.id,
-                date: normalizedDate
+                date: normalizedDate,
+                employeeId
             },
             include: {
                 employee: true,
@@ -49,18 +51,31 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
     const employees = await prisma.companyEmployee.findMany({
         where: {
-            companyId: company?.id,
+          companyId: company?.id,
         },
         select: {
-            name: true,
-            id: true,
-        }
-    });
+          name: true,
+          id: true,
+          schedulerColor: true,
+          _count: {
+            select: {
+              companySchedule: {
+                where: {
+                  date: {
+                    gte: startOfTodayUTC,
+                    lte: endOfTodayUTC,
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
 
     return (
         <>
             <TopBar title="Agenda: semana" />
-            <SchedulerOptions type="semana" currentDate={date} employees={employees} />
+            <SchedulerOptions type="semana" currentDate={date} employees={employees} currentEmployee={employeeId} />
             <WeekScheduler header={["Hora", ...weekDays]} schedulesMatrix={schedulesMatrix} />
         </>
     )

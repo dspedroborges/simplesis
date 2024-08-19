@@ -36,6 +36,13 @@ export async function createCompanySchedule(previousState: { message: string, er
         }
     }
 
+    if (hourStart > hourEnd) {
+        return {
+            message: "A hora de início não pode ser maior que a hora de fim.",
+            error: true
+        } 
+    }
+
     // verifica conflito
     const conflict = await prisma.companySchedule.findFirst({
         where: {
@@ -161,6 +168,7 @@ export async function updateCompanySchedule(previousState: { message: string, er
     const confirmed = Boolean(formData.get("confirmed"));
     const paid = Boolean(formData.get("paid"));
     const done = Boolean(formData.get("done"));
+    const installments = Number(formData.get("installments"));
 
     console.log(formData.get("confirmed"));
     console.log(formData.get("done"));
@@ -196,7 +204,8 @@ export async function updateCompanySchedule(previousState: { message: string, er
                 title,
                 comment,
                 price,
-                paymentMode
+                paymentMode,
+                installments: installments ?? 0
             }
         });
         companySaleId = result.id;
@@ -235,8 +244,6 @@ export async function updateCompanySchedule(previousState: { message: string, er
     if (!foundSchedule?.paid) {
         if (companySaleId) data.companySaleId = companySaleId;
     }
-
-    console.log(data);
 
     await prisma.companySchedule.update({
         where: {

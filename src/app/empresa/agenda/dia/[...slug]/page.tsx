@@ -3,6 +3,7 @@ import DayScheduler from "@/app/components/DayScheduler";
 import prisma from "../../../../../../lib/prisma";
 import SchedulerOptions from "@/app/components/SchedulerOptions";
 import TopBar from "@/app/components/TopBar";
+import { endOfTodayUTC, startOfTodayUTC } from "@/utils";
 
 export default async function Page({ params }: { params: { slug: string[] } }) {
     const date = String(params.slug[0]);
@@ -56,18 +57,31 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
     const employees = await prisma.companyEmployee.findMany({
         where: {
-            companyId: company?.id,
+          companyId: company?.id,
         },
         select: {
-            name: true,
-            id: true,
-        }
-    });
+          name: true,
+          id: true,
+          schedulerColor: true,
+          _count: {
+            select: {
+              companySchedule: {
+                where: {
+                  date: {
+                    gte: startOfTodayUTC,
+                    lte: endOfTodayUTC,
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
 
     return (
         <>
             <TopBar title="Agenda: dia" />
-            <SchedulerOptions type="dia" currentDate={date} employees={employees} />
+            <SchedulerOptions type="dia" currentDate={date} employees={employees} currentEmployee={employeeId} />
             <DayScheduler header={["Hora", "Descrição", "Funcionário", "Produto/serviço", "Cliente", "Editar", "Deletar"]} schedules={schedules} />
         </>
     )

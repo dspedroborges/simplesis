@@ -3,7 +3,7 @@
 import Link from "next/link";
 import SubmitConfirmationButton from "./SubmitConfirmationButton";
 import { deleteCompanySchedule } from "../actions/company/CompanyScheduleActions";
-import { createNumbersList, isThereHourStart, isThisHourBusy } from "./DayScheduler";
+import { createNumbersList, formatHour, isThereHourStart, isThisHourBusy } from "./DayScheduler";
 import { BsCheck2Square, BsCurrencyDollar, BsHandThumbsDown, BsHandThumbsUp, BsInfoCircle, BsPencilSquare, BsPlusCircle, BsSquare, BsX } from "react-icons/bs";
 import { memo, useState } from "react";
 
@@ -26,7 +26,7 @@ function getWeekDayName(dayNumber: number) {
 }
 
 export default memo(function WeekScheduler({ header, schedulesMatrix }: { header: string[], schedulesMatrix: Record<string, any>[][] }) {
-    const hours = createNumbersList(8, 21);
+    const hours = createNumbersList(6, 22);
 
     return (
         <div className="p-4">
@@ -52,7 +52,7 @@ export default memo(function WeekScheduler({ header, schedulesMatrix }: { header
                 <div className="w-[14.3%] text-center">
                     {
                         hours.map((hour) => {
-                            return <div className="text-[8px] lg:text-xs h-[35px] bg-gray-700 hover:bg-gray-800 text-white border-b border-white flex items-center justify-center last:rounded-b-xl" key={hour}>{hour}</div>
+                            return <div className="text-[8px] lg:text-xs h-[35px] bg-gray-700 hover:bg-gray-800 text-white border-b border-white flex items-center justify-center last:rounded-b-xl" key={hour}>{formatHour(hour)}</div>
                         })
                     }
                 </div>

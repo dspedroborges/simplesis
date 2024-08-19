@@ -15,7 +15,7 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
     const formRef = useRef<HTMLFormElement>(null);
     const [isPaid, setIsPaid] = useState(false);
     const [paymentMode, setPaymentMode] = useState("Pix");
-    
+
     if (!formState.error && formState.message !== "") {
         formRef.current?.reset();
     }
@@ -46,11 +46,81 @@ export default function Page({ data }: { data: Record<string, string | any> | nu
                 </div>
                 <div>
                     <label htmlFor="hourStart" className="block cursor-pointer font-bold mb-2">Hora início:</label>
-                    <input type="number" name="hourStart" id="hourStart" className="rounded-xl border p-2 w-full" defaultValue={data?.hourStart} />
+                    <select name="hourStart" id="hourStart" className="w-full border p-2 rounded-xl" defaultValue={data?.hourStart}>
+                        <option value="6">6:00</option>
+                        <option value="6">6:30</option>
+                        <option value="7">7:00</option>
+                        <option value="7.5">7:30</option>
+                        <option value="8">8:00</option>
+                        <option value="8.5">8:30</option>
+                        <option value="9">9:00</option>
+                        <option value="9.5">9:30</option>
+                        <option value="10">10:00</option>
+                        <option value="10.5">10:30</option>
+                        <option value="11">11:00</option>
+                        <option value="11.5">11:30</option>
+                        <option value="12">12:00</option>
+                        <option value="12.5">12:30</option>
+                        <option value="13">13:00</option>
+                        <option value="13.5">13:30</option>
+                        <option value="14">14:00</option>
+                        <option value="14.5">14:30</option>
+                        <option value="15">15:00</option>
+                        <option value="15.5">15:30</option>
+                        <option value="16">16:00</option>
+                        <option value="16.5">16:30</option>
+                        <option value="17">17:00</option>
+                        <option value="17.5">17:30</option>
+                        <option value="18">18:00</option>
+                        <option value="18.5">18:30</option>
+                        <option value="19">19:00</option>
+                        <option value="19.5">19:30</option>
+                        <option value="20">20:00</option>
+                        <option value="20.5">20:30</option>
+                        <option value="21">21:00</option>
+                        <option value="21.5">21:30</option>
+                        <option value="22">22:00</option>
+                        <option value="22.5">22:30</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="hourEnd" className="block cursor-pointer font-bold mb-2">Hora fim:</label>
-                    <input type="number" name="hourEnd" id="hourEnd" className="rounded-xl border p-2 w-full" defaultValue={data?.hourEnd} />
+                    <select name="hourEnd" id="hourEnd" className="w-full border p-2 rounded-xl" defaultValue={data?.hourEnd}>
+                        <option value="6">6:00</option>
+                        <option value="6">6:30</option>
+                        <option value="7">7:00</option>
+                        <option value="7.5">7:30</option>
+                        <option value="8">8:00</option>
+                        <option value="8.5">8:30</option>
+                        <option value="9">9:00</option>
+                        <option value="9.5">9:30</option>
+                        <option value="10">10:00</option>
+                        <option value="10.5">10:30</option>
+                        <option value="11">11:00</option>
+                        <option value="11.5">11:30</option>
+                        <option value="12">12:00</option>
+                        <option value="12.5">12:30</option>
+                        <option value="13">13:00</option>
+                        <option value="13.5">13:30</option>
+                        <option value="14">14:00</option>
+                        <option value="14.5">14:30</option>
+                        <option value="15">15:00</option>
+                        <option value="15.5">15:30</option>
+                        <option value="16">16:00</option>
+                        <option value="16.5">16:30</option>
+                        <option value="17">17:00</option>
+                        <option value="17.5">17:30</option>
+                        <option value="18">18:00</option>
+                        <option value="18.5">18:30</option>
+                        <option value="19">19:00</option>
+                        <option value="19.5">19:30</option>
+                        <option value="20">20:00</option>
+                        <option value="20.5">20:30</option>
+                        <option value="21">21:00</option>
+                        <option value="21.5">21:30</option>
+                        <option value="22">22:00</option>
+                        <option value="22.5">22:30</option>
+                    </select>
                 </div>
                 <div>
                     <label htmlFor="confirmed" className="block cursor-pointer font-bold mb-2">Confirmado:</label>
